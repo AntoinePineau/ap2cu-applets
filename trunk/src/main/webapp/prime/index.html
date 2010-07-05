@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>Testing Primality of a number</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
+    <link type="text/css" href="/res/css/common.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <script src="http://www.java.com/js/deployJava.js"></script>
+    <script>
+      var attributes = {id:'ap2cu', code:'com.ap2cu.applets.AP2cuApplet', width:1, height:1} ; 
+      var parameters = {jnlp_href:'http://ap2cu.com/tools/applets/ap2cu-applets.jnlp'} ; 
+      deployJava.runApplet(attributes, parameters, '1.6');
+      var ap = document.getElementById('ap2cu');
+      
+      function execute(id, command) {
+        var nb = $('#nb').val();
+
+        if(isNaN(nb)) {
+          alert(nb+" is not a number");
+          $('#nb').val('');
+        }
+        else {
+          $('#'+id).html('<img src="/res/img/ajax-loader.gif" title="loading..." alt="loading..."/>');
+          var n = ap.getNumber(nb);
+          $('#'+id).html(eval(command));
+        }
+      }
+      
+      function isPrime() {
+        execute('java', 'n+" <b>is "+(n.isPrime()?"":"not ")+"</b>prime"');
+      }
+      
+      function decompose() {
+        execute('decompose', 'n.decompose().toString()');
+      }
+    </script>
+    <h1>Prime Numbers</h1>
+    <form name="prime" id="regex" action="javascript:void(0)">
+      <input type="text" size="50" id="nb" name="nb" value=""/><br/>
+      <a href="javascript:isPrime()"><h2>Test whether a number is prime or not</h2></a>
+      <span id="java"></span><br/>
+      <a href="javascript:decompose()"><h2>Decompose in Prime Numbers</h2></a>
+      <span id="decompose"></span>
+    </form>
+  </body>
+</html>

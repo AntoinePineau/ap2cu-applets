@@ -1,0 +1,25 @@
+<tr id="headercontainer-<!--@REPLACE:header-id@-->">
+  <td colspan="2" class="container">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr class="header">
+        <td><img src="http://ap2cu.com/tools/test/img/icn_collapse.gif" title="Collapse" style="margin:5px" onclick="collapse('header-<!--@REPLACE:header-id@-->',this)"/></td>
+        <td><label for="header-<!--@REPLACE:header-id@-->" title="The class to test">Header<span class="nb"> - <!--@REPLACE:header-id@--></span></label></td>
+        <td width="100%" align="right"><!--@INSERT:buttons(container-id=headercontainer-<!--@REPLACE:header-id@-->)@--></td>
+      </tr>
+      <tr id="header-<!--@REPLACE:header-id@-->">
+        <td colspan="3">
+          <table border="0" cellpadding="0" cellspacing="5" width="100%" >
+            <tr>
+              <td><label for="header-<!--@REPLACE:header-id@-->-key" title="The Header Key">Key</label></td>
+              <td width="100%"><input type="text" size="2" name="header-<!--@REPLACE:header-id@-->-key" id="header-<!--@REPLACE:header-id@-->-key"/></td>
+            </tr>
+            <tr>
+              <td><label for="header-<!--@REPLACE:header-id@-->-value" title="The Header Value">Value</label></td>
+              <td width="100%"><input type="text" size="2" name="header-<!--@REPLACE:header-id@-->-value" id="header-<!--@REPLACE:header-id@-->-value"/></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>

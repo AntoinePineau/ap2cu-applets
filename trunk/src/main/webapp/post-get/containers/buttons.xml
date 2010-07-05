@@ -1,0 +1,2 @@
+<img src="http://ap2cu.com/tools/test/img/btn_repliadd.gif" title="Add" onclick="addItem('<!--@REPLACE:container-id@-->')"/>
+<img src="http://ap2cu.com/tools/test/img/btn_repliremove.gif" title="Remove" onclick="removeItem('<!--@REPLACE:container-id@-->')" style="margin-right:5px"/>

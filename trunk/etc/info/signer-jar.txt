@@ -1,0 +1,38 @@
+Comment signer automatiquement un jar dans une application Java Client ?
+* Pré-requis : faire un fichier keystore avec la commande : 
+   "C:\Program Files\Java\jdk1.6.0_06\bin\keytool" -genkey -keystore nomDuKeyStore -alias nomAlias
+
+* Pour visualiser un keystore : 
+   "C:\Program Files\Java\jdk1.6.0_06\bin\keytool" -list -keystore nomDuKeyStore -v -alias nomAlias
+
+* Pour signer le jar :
+   "C:\Program Files\Java\jdk1.6.0_06\bin\jarsigner" -keystore nomDuKeyStore -signedjar NomDuJarSigne NomDuJarNonSigne nomAlias
+
+
+http://www.developer.com/java/data/article.php/3303561/Creating-a-Trusted-Applet-with-Local-File-System-Access-Rights.htm
+
+
+Éditer le fichier Makefile.preamble,
+Ajouter la variable ENS_KEYSTORE qui pointe vers un fichier keyStore, 
+le ENS_KEYSTORE_ALIAS qui est l'alias desiré dans le keyStore et 
+la variable ENS_STOREPASS contenant le storepass, par exemple :
+
+ENS_KEYSTORE = C:/Documents and Settings/Antoine PINEAU/Schneider-Electric/WebGlobalization/AP2cu-Applets/etc/info/AP2cuKeyStore
+ENS_KEYSTORE_ALIAS = AP2cu-Applets
+ENS_STOREPASS = AP2cu1982
+
+Vérifier qu'il existe la variable AFTER_COPY_JAVA_CLASSES et qu'elle pointe vers ens-sign-jar :
+
+AFTER_COPY_JAVA_CLASSES = ens-sign-jar
+
+Le cas du wojavaclient.jar
+
+Ce fichier est un jar Apple téléchargé sur le client pour les applications javaClient. 
+Le problème est que ce jar est déjà signé par Apple. Pour pouvoir le resigner, il faut :
+
+   1. déjarrer wojavaclient.jar dans un répertoire vide : 
+       "C:\Program Files\Java\jdk1.6.0_06\bin\jar" xvf wojavaclient.jar
+   2. supprimer les fichiers de signature META-INF/APPLE.RSA et META-INF/APPLE.SF
+   3. rejarrer : 
+       "C:\Program Files\Java\jdk1.6.0_06\bin\jar" cvf wojavaclient.jar *.*
+
