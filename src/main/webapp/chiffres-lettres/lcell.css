@@ -1,0 +1,82 @@
+* {
+	vertical-align: top;
+}
+
+.resultatChiffres span,.resultatLettres span {
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.proposition {
+	text-align: center;
+}
+
+#calcul {
+	text-indent: 25px;
+}
+
+#middle {
+	border-right: solid 3px #CC2222;
+}
+
+tr.ligne td * {
+	vertical-align: middle
+}
+
+.tirageChiffres #resultatAAtteindre,.tirageLettres {
+	font-size: 35px;
+	font-weight: lighter;
+	text-align: center;
+	color: #CC2222;
+	background-color: #FFFB00;
+	border: solid 1px #000
+}
+
+#calcul .operation {
+	font-size: 17px;
+	font-weight: bold;
+	text-align: center;
+	color: #CC2222;
+	background-color: #FFFB00;
+	border: solid 1px #000;
+	width: 30px
+}
+
+.tirageChiffres .chiffre,#mot {
+	font-size: 35px;
+	font-weight: lighter;
+	text-align: center;
+	color: #FFFB00;
+	background-color: #2222CC;
+	border: solid 1px #000
+}
+
+#calcul .operande {
+	font-size: 17px;
+	font-weight: bold;
+	text-align: center;
+	color: #FFFB00;
+	background-color: #2222CC;
+	border: solid 1px #000;
+	width: 80px
+}
+
+.head {
+	font-weight: bold;
+}
+
+#scrabble {
+  text-align:center;
+}
+
+#scrabble .mot{
+	border: solid 2px #000;
+	display:block;
+	width:100%
+}
+
+body,#compteEstBon,#compteEstBon *,#motLePlusLong,#motlePlusLong * {
+	text-align: center;
+	width: 100%;
+}

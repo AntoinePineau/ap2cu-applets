@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!-- ======================================================================
+     Subtitles build file
+
+     Antoine PINEAU
+     ====================================================================== -->
+<project name="AP2cu-Applets" default="Deploy" basedir=".">
+	<description>
+    Create a jar for the applets
+  </description>
+
+	<!-- =================================
+          C L E A N
+         ================================= -->
+	<target name="Clean" description="Clean">
+		<delete dir="${basedir}/target" />
+		<mkdir dir="${basedir}/target" />
+		<mkdir dir="${basedir}/target/classes" />
+	</target>
+
+	<!-- =================================
+          I N I T I A L I Z A T I O N
+         ================================= -->
+	<target name="Init" description="Initialize attributes" depends="Clean">
+		<property name="MainClass" value="com.ap2cu.applets.AP2cuApplet" />
+		<property name="JarFile" value="target/applets/ap2cu-applets.jar" />
+		<property name="src" value="${basedir}/src/main/java" />
+		<property name="bin" value="${basedir}/target/classes" />
+		<property name="lib" value="${basedir}/lib" />
+
+		<property name="KeyStore" value="AP2cuKeyStore" />
+		<property name="Alias" value="AP2cu-Applets" />
+		<property name="Password" value="AP2cu1982" />
+		<property name="ValidityDays" value="365" />
+	</target>
+
+
+	<!-- =================================
+          C O M P I L A T I O N
+         ================================= -->
+	<target name="Compile" description="Compile sources" depends="Init">
+		<javac srcdir="${src}" destdir="${bin}" debug="on" classpath="${lib}/dom4j-1.6.1.jar" />
+		<copy todir="${bin}">
+			<fileset dir="${src}"/>
+		</copy>
+	</target>
+
+
+	<!-- =================================
+          J A R - A R C H I V E
+         ================================= -->
+	<target name="Jar" description="Create a signed jar" depends="Compile">
+		<mkdir dir="target/applets" />
+		<jar destfile="${JarFile}" basedir="${bin}">
+			<manifest>
+				<attribute name="Built-By" value="Antoine PINEAU" />
+				<attribute name="Main-Class" value="${MainClass}" />
+			</manifest>
+		</jar>
+	</target>
+
+
+	<!-- =================================
+          S I G N - J A R
+         ================================= -->
+	<target name="SignJar" description="Sign the Jar file" depends="Jar">
+		<delete file="${KeyStore}" />
+		<genkey alias="${Alias}" storepass="${Password}" keystore="${KeyStore}" validity="${ValidityDays}">
+			<dname>
+				<param name="CN" value="Antoine PINEAU" />
+				<param name="OU" value="AP2cu" />
+				<param name="O" value="ap2cu.com" />
+				<param name="C" value="FR" />
+			</dname>
+		</genkey>
+		<signjar jar="${JarFile}" alias="${Alias}" storepass="${Password}" keystore="${KeyStore}" />
+	</target>
+
+	<!-- =================================
+          J N L P
+         ================================= -->
+	<target name="JNLP" description="Generate JNLP File" depends="Jar">
+		<xslt in="${basedir}/etc/conf/properties.xml" out="${basedir}/target/applets/ap2cu-applets.jnlp" style="${basedir}/etc/dist/jnlp.xsl">
+			<outputproperty name="method" value="xml" />
+			<outputproperty name="standalone" value="yes" />
+			<outputproperty name="encoding" value="UTF-8" />
+			<outputproperty name="indent" value="yes" />
+		</xslt>
+	</target>
+
+
+	<!-- =================================
+          D E P L O Y
+         ================================= -->
+	<target name="Deploy" description="Deploy applets" depends="JNLP">
+		<!--move file="${KeyStore}" tofile="${basedir}/target/${KeyStore}" /-->
+		<copy todir="${basedir}/target">
+			<fileset dir="${basedir}/src/main/webapp" />
+		</copy>
+		<copy file="${lib}/dom4j-1.6.1.jar" tofile="${basedir}/target/applets/dom4j-1.6.1.jar" />
+		<ftp server="ftp.ap2cu.com" userid="apcucgvs" password="AP1982" remotedir="/www/tools">
+			<fileset dir="${basedir}/target">
+				<include name="**/*" />
+			</fileset>
+		</ftp>
+	</target>
+
+</project>

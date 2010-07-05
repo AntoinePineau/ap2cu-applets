@@ -1,0 +1,11 @@
+<applets>
+  <name>AP2cu Applets</name>
+  <vendor>Antoine PINEAU</vendor>
+  <codebase>http://ap2cu.com/tools/applets</codebase>
+  <jnlp>ap2cu-applets.jnlp</jnlp>
+  <classpath>
+    <jar version="1.0.0" main="true">ap2cu-applets.jar</jar>
+    <jar version="1.6.1">dom4j-1.6.1.jar</jar>
+  </classpath>
+  <applet name="ap2cu" class="com.ap2cu.applets.AP2cuApplet" width="1" height="1" />
+</applets>

@@ -1,0 +1,33 @@
+<regles>
+  <lettres nb="9">
+    <lettre max="8" type="voyelle">A</lettre>
+    <lettre max="4" type="consonne">B</lettre>
+    <lettre max="4" type="consonne">C</lettre>
+    <lettre max="4" type="consonne">D</lettre>
+    <lettre max="13" type="voyelle">E</lettre>
+    <lettre max="4" type="consonne">F</lettre>
+    <lettre max="4" type="consonne">G</lettre>
+    <lettre max="4" type="consonne">H</lettre>
+    <lettre max="6" type="voyelle">I</lettre>
+    <lettre max="1" type="consonne">J</lettre>
+    <lettre max="1" type="consonne">K</lettre>
+    <lettre max="6" type="consonne">L</lettre>
+    <lettre max="4" type="consonne">M</lettre>
+    <lettre max="6" type="consonne">N</lettre>
+    <lettre max="6" type="voyelle">O</lettre>
+    <lettre max="3" type="consonne">P</lettre>
+    <lettre max="1" type="consonne">Q</lettre>
+    <lettre max="6" type="consonne">R</lettre>
+    <lettre max="7" type="consonne">S</lettre>
+    <lettre max="6" type="consonne">T</lettre>
+    <lettre max="6" type="voyelle">U</lettre>
+    <lettre max="2" type="consonne">V</lettre>
+    <lettre max="1" type="consonne">W</lettre>
+    <lettre max="1" type="consonne">X</lettre>
+    <lettre max="1" type="voyelle">Y</lettre>
+    <lettre max="1" type="consonne">Z</lettre>
+  </lettres>
+  <points>
+    <points-par-lettre>1</points-par-lettre>
+  </points>
+</regles>

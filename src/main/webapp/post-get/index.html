@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <title>Passing Get / Post Parameters and Headers to a given URL</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <link type='text/css' href='/res/css/common.css' rel='stylesheet'/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
+    <script type="text/javascript" src="js/item.js"></script>
+    <style type="text/css">
+      #result{padding:5px;border:solid 1px #000000;word-wrap:break-word;}      
+      #main td{vertical-align:top}
+      #main table td{text-align:right;vertical-align:middle}
+      input,textarea,select{width:100%}
+      label{white-space:nowrap}
+      .container{border:solid 1px #999999}
+      .container .header{border:solid 1px #999999;background-color:#EEEEEE;font-weight:bold;margin:5px 0;}
+      .container .header .nb{color:#999999;font-weight:normal}
+      #collapse{cursor:pointer}
+    </style>
+    <script type="text/javascript" language="javascript">    
+    function submitForm() {
+      $('#result').hide();
+      var action = $('input[name=action]').val();
+      var ap2cu = document.getElementById('ap2cu');
+      var form = ap2cu.getForm(action);
+      $('input[name^=get][name$=key]').each(function(){
+        var key = $(this).val();
+        var value = $('input[name='+$(this).attr('name').replace('key','value')+']').val();
+        if(value!=''||key!='')
+          form.addGetParameter(key, value);
+      }); 
+      $('input[name^=post][name$=key]').each(function(){
+        var key = $(this).val();
+        var value = $('input[name='+$(this).attr('name').replace('key','value')+']').val();
+        if(value!=''||key!='')
+          form.addPostParameter(key, value);
+      }); 
+      $('input[name^=header][name$=key]').each(function(){
+        var key = $(this).val();
+        var value = $('input[name='+$(this).attr('name').replace('key','value')+']').val();
+        if(value!=''||key!='')
+          form.addHeader(key, value);
+      });
+      var result = form.submit();
+      $('#result').html(result.replace(/</g,'&lt;').replace(/\n/g,'<br/>'));
+      $('#result').show();
+      return false;
+    }
+    function loadForm() {
+      $('#gets').html(load('get','1'));
+      $('#posts').html(load('post','1'));
+      $('#headers').html(load('header','1'));
+      $('#getitemsbtn').click();
+      $('#postitemsbtn').click();
+      $('#headeritemsbtn').click();
+      update();
+    }
+    </script>
+  </head>
+  <body>
+    <script src="http://www.java.com/js/deployJava.js"></script>
+    <script>
+      var attributes = {id:'ap2cu', code:'com.ap2cu.applets.AP2cuApplet', width:1, height:1} ; 
+      var parameters = {jnlp_href:'http://ap2cu.com/tools/applets/ap2cu-applets.jnlp'} ; 
+      deployJava.runApplet(attributes, parameters, '1.6');
+      
+      $(document).ready(function(){
+        loadForm();
+      });
+    </script>
+    
+    <h1>Send GET / POST variables or HEADERS to an URL</h1>
+    
+    <form name="frm" id="frm" action="javascript:void(0);" method="POST">
+      <table border="0" cellpadding="0" cellspacing="5" width="100%" id="main">
+        <tr>
+          <td width="50%">
+            <table border="0" cellpadding="0" cellspacing="5">
+              <tr id="action">
+                <td><label for="action" title="The URL to query">Action URL</label></td>
+                <td width="100%"><input type="text" size="2" name="action" id="action" value="http://ap2cu.com/tools/post-get/action.php5"/></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="container">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr class="header">
+                      <td><img id="headeritemsbtn" src="http://ap2cu.com/tools/test/img/icn_collapse.gif" title="Collapse" style="margin:5px" onclick="collapse('headeritems',this)"/></td>
+                      <td style="text-align:left;width:100%">HEADERS</td>
+                      <td>&#160;</td>
+                    </tr>
+                    <tr id="headeritems">
+                      <td colspan="3">
+                        <table border="0" cellpadding="0" cellspacing="5" width="100%" id="headers">
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="container">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr class="header">
+                      <td><img id="getitemsbtn" src="http://ap2cu.com/tools/test/img/icn_collapse.gif" title="Collapse" style="margin:5px" onclick="collapse('getitems',this)"/></td>
+                      <td style="text-align:left;width:100%">GET parameters</td>
+                      <td>&#160;</td>
+                    </tr>
+                    <tr id="getitems">
+                      <td colspan="3">
+                        <table border="0" cellpadding="0" cellspacing="5" width="100%" id="gets">
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="container">
+                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr class="header">
+                      <td><img id="postitemsbtn" src="http://ap2cu.com/tools/test/img/icn_collapse.gif" title="Collapse" style="margin:5px" onclick="collapse('postitems',this)"/></td>
+                      <td style="text-align:left;width:100%">POST parameters</td>
+                      <td>&#160;</td>
+                    </tr>
+                    <tr id="postitems">
+                      <td colspan="3">
+                        <table border="0" cellpadding="0" cellspacing="5" width="100%" id="posts">
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr id="submit">
+                <td><input type="submit" value="Submit" onclick="javascript:submitForm()"/></td>
+                <td>&#160;</td>
+              </tr>
+            </table>
+          </td>
+          <td width="50%">
+            <div id="result" style="display:none"></div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
+    
