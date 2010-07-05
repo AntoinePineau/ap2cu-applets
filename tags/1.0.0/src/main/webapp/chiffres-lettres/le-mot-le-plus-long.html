@@ -1,0 +1,72 @@
+<html>
+<head>
+<title>Le Mot le plus Long</title>
+<script src="http://www.meiocodigo.com/meiomask/jquery.js" type="text/javascript"></script>
+<script src="http://github.com/fabiomcosta/jquery-meiomask/raw/08b92c411a60ace9131de697179fda433178b8d9/jquery.meio.mask.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
+<script type="text/javascript" src="lcell.js"></script>
+<link type="text/css" href="/res/css/common.css" rel="stylesheet" />
+<link type="text/css" href="lcell.css" rel="stylesheet" />
+</head>
+<body>
+<script src="http://www.java.com/js/deployJava.js"></script>
+<script><!--
+      var attributes = {id:'ap2cu', code:'com.ap2cu.applets.AP2cuApplet', width:1, height:1} ; 
+      var parameters = {jnlp_href:'http://ap2cu.com/tools/applets/ap2cu-applets.jnlp'} ; 
+      deployJava.runApplet(attributes, parameters, '1.6');
+      var ap2cu = document.getElementById('ap2cu');
+      var reglesMotLePlusLong,tirageMotLePlusLong;
+      
+      $(document).ready(function() {
+        initMasks();
+        reglesMotLePlusLong = ap2cu.obtenirLesReglesDuMotLePlusLong();
+        $('#motLePlusLong').hide(); 
+      });
+    --></script>
+<h1>Le Mot le plus Long</h1>
+<h2><a href="javascript:void(0)" onclick="nouveauMotLePlusLong()">Nouveau Tirage</a></h2>
+<form name="motLePlusLong" id="motLePlusLong" action="javascript:void(0)" onSubmit="validerMot()" style="display: none">
+<table>
+  <thead>
+    <tr>
+      <td>&#160;</td>
+    </tr>
+    <tr>
+      <th><span class="tirageLettres"></span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>&#160;</td>
+  </tr>
+  <tr>
+    <td>Votre Mot:</td>
+  </tr>
+  <tr>
+    <td><span class="proposition"><input name="mot" id="mot" alt="mot" size="11" style="width:244px"/></span></td>
+  </tr>
+  <tr>
+    <td>&#160;</td>
+  </tr>
+  <tr class="resultatLettres">
+    <td class="points"></td>
+  </tr>
+  <tr>
+    <td>&#160;</td>
+  </tr>
+  <tr class="resultatLettres">
+    <td class="solutionDeLOrdinateur">&#160;</td>
+  </tr>
+  <tr>
+    <td>&#160;</td>
+  </tr>
+  <tfoot id="validerMotLePlusLong">
+    <tr>
+      <th><span><input type="submit" value="Valider" style="width:100px"/></span></th>
+    </tr>
+  </tfoot>
+</table>
+</form>
+
+</body>
+</html>

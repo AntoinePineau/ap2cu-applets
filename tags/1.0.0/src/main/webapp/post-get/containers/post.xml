@@ -1,0 +1,25 @@
+<tr id="postcontainer-<!--@REPLACE:post-id@-->">
+  <td colspan="2" class="container">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr class="header">
+        <td><img src="http://ap2cu.com/tools/test/img/icn_collapse.gif" title="Collapse" style="margin:5px" onclick="collapse('post-<!--@REPLACE:post-id@-->',this)"/></td>
+        <td><label for="post-<!--@REPLACE:post-id@-->" title="The class to test">Post Parameter<span class="nb"> - <!--@REPLACE:post-id@--></span></label></td>
+        <td width="100%" align="right"><!--@INSERT:buttons(container-id=postcontainer-<!--@REPLACE:post-id@-->)@--></td>
+      </tr>
+      <tr id="post-<!--@REPLACE:post-id@-->">
+        <td colspan="3">
+          <table border="0" cellpadding="0" cellspacing="5" width="100%" >
+            <tr>
+              <td><label for="post-<!--@REPLACE:post-id@-->-key" title="The Post Parameter Key">Key</label></td>
+              <td width="100%"><input type="text" size="2" name="post-<!--@REPLACE:post-id@-->-key" id="post-<!--@REPLACE:post-id@-->-key"/></td>
+            </tr>
+            <tr>
+              <td><label for="post-<!--@REPLACE:post-id@-->-value" title="The Post Parameter Value">Value</label></td>
+              <td width="100%"><input type="text" size="2" name="post-<!--@REPLACE:post-id@-->-value" id="post-<!--@REPLACE:post-id@-->-value"/></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
