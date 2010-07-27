@@ -98,11 +98,6 @@
 			<fileset dir="${basedir}/src/main/webapp" />
 		</copy>
 		<copy file="${lib}/dom4j-1.6.1.jar" tofile="${basedir}/target/applets/dom4j-1.6.1.jar" />
-		<ftp server="ftp.ap2cu.com" userid="apcucgvs" password="AP1982" remotedir="/www/tools">
-			<fileset dir="${basedir}/target">
-				<include name="**/*" />
-			</fileset>
-		</ftp>
 	</target>
 
 </project>
