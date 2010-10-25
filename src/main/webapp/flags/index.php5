@@ -1,17 +1,23 @@
 <?php
-  header("Content-type: image/png");
   $size=$_GET["size"];
   $country=strtoupper($_GET["country"]);
+  $type=strtolower($_GET["type"]);
+  
+  if($type=="") $type="png";
+  header("Content-type: image/".$type);
 
   $t=getFlagSizePosition($size, $country);
   $width=$t[0];$height=$t[1];$x=$t[2];$y=$t[3];
-  writeFlag($width,$height,$x,$y);
+  writeFlag($type,$width,$height,$x,$y);
      
-  function writeFlag($width, $height, $x, $y) {
+  function writeFlag($type,$width, $height, $x, $y) {
     $image = imageCreateFromPNG("flags.png");
     $flag = imageCreateTrueColor($width, $height);
     if(imageCopy($flag, $image, 0, 0, $x, $y, 10304, 55)) {
-      imagePNG($flag); imageDestroy($flag);
+      if($type=="gif") imageGIF($flag);
+      else if($type=="jpeg") imageJPEG($flag);
+      else imagePNG($flag);
+      imageDestroy($flag);
     }
     imageDestroy($image);
   }
