@@ -1,5 +1,5 @@
 <?php
-  $size=$_GET["size"];
+  $size=strtolower($_GET["size"]);
   $country=strtoupper($_GET["country"]);
   $type=strtolower($_GET["type"]);
   if($type!="jpeg" && $type!="gif") $type="png";
