@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/jquery.js"></script>
+    <style type="text/css">
+      *{font-family:Courier New;font-size:0.99em;}
+      table.main{border:solid 1px #404040;background:#F4F4F4;}
+      table.results{margin:0 5px;}
+      tr#regex td{padding:10px 3px;}
+      td.group{border:solid 1px}
+      td.group,.flags{text-align:center;}
+      td.group.title{font-weight:bold;}
+      div.ok{font-weight:bold;color:#00AA00;}
+      div.ko {font-weight:bold;color:#AA0000;}
+    </style>
+    <script>
+      var nbInputs = 5;
+      
+      function addFlags(){
+        var flags={'g':'The global search flag makes the RegExp search for a pattern throughout the string, creating an array of all occurrences it can find matching the given pattern.',
+                   'i':'The ignore case flag makes a regular expression case insensitive. For international coders, note that this might not work on extended characters such as å, ü, ñ, æ.',
+                   'm':'This flag makes the beginning of input (^) and end of input ($) codes also catch beginning and end of line respectively.'};
+        for(flag in flags){$("#flag").html($("#flag").html()+"<label for='"+flag+"' title='"+flags[flag]+"'>"+flag+":</label><input id='"+flag+"' type='checkbox' name='flag' value='"+flag+"' title='"+flags[flag]+"'"+(flag=='g'?" checked='checked'":"")+"/>");if(flag!='m')$("#flag").html($("#flag").html()+"<br/>");}
+      }
+      function changeFlags(){var flag=document.regexForm["flag"];var flags=document.regexForm["flags"];flags.value="";for(i=0;i<flag.length;i++)if(flag[i].checked)flags.value+=flag[i].value;}
+      function addInputs(){for(i=nbInputs;i>0;i--)$("#next").after("<tr><td/><td>Input #"+i+":</td><td/><td><textarea name='input"+i+"' cols='30'>Hello "+i+" World !</textarea></td><td/><td id='bool"+i+"'></td><td/><td>Result #"+i+":</td><td/><td id='result"+i+"'></td></tr>");}
+      function clear(){for(i=1;i<=nbInputs;i++) {$("#result"+i).html("");$("#bool"+i).html("");document.regexForm["input"+i].value = "";}document.regexForm["regex"].value = "";$("input[name=flags]").each(function(){this.value=""});$("input[name=flag]").each(function(){this.checked=false});}
+      function run(){
+        var regex = document.regexForm["regex"].value;var flags = document.regexForm["flags"].value;
+        try{
+          for(i=1;i<=nbInputs;i++) {
+            $("#result"+i).html("");var result=new RegExp(regex, flags).exec(document.regexForm["input"+i].value);
+            $("#bool"+i).html("<div class='"+(result?"ok":"ko")+"'>"+(result?"OK":"KO")+"</div>");
+            if(result) {
+              var groups = "<table class='results'><tr>";
+              for(j=0;j<result.length;j++)groups+="<td class='group title'>$"+j+"</td><td/>";groups+= "</tr><tr>";
+              for(j=0;j<result.length;j++)groups+="<td class='group'>"+result[j]+"</td><td/>";groups+= "</tr></table>";$("#result"+i).html(groups);
+            }
+          }
+        }catch(e){alert("The regular expression "+regex+" is not valid:\n"+e)}
+        return false;
+      }
+      $(document).ready(function(){addInputs();addFlags();
+        $("form[name=regexForm] input[type=submit][value=Clear]").click(clear);
+        $("form[name=regexForm] input[type=submit][value=Run]").click(run);
+        $("form[name=regexForm]").submit(function(){return false;});
+        $("textarea,input[type=text]").focus(function(){this.select()});
+        $("input[name=flag]").change(changeFlags);
+        $("input[name=flags]").keyup(function(){
+          var flag=document.regexForm["flag"];var flags=document.regexForm["flags"];
+          if(!/^[gim]{0,3}?$/.test(flags.value)){alert("Flags should be g, i or m");changeFlags();}
+          for(i=0;i<flag.length;i++)flag[i].checked = flags.value.indexOf(flag[i].value)>-1;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="formDiv">
+      <form name="regexForm" method="post">
+        <table class="main" cellpadding="0" cellspacing="0">
+          <tr><td colspan="3">&#160;</td></tr>
+          <tr id="regex"><td/>
+            <td>REGEX:</td><td/>
+            <td><textarea name="regex" cols="30">^(.*)(lo).*([0-9]).*([!?])$</textarea></td><td/>
+            <td class="flags">Flags:<br/><input name="flags" type="text" size="3" value="g"/></td><td/>
+            <td id="flag"/><td/>
+            <td><input type="submit" value="Run"/>&#160;<input type="submit" value="Clear"/></td><td/>
+          </tr>
+          <tr><td colspan="10">&#160;</td></tr><tr><td colspan="10"><hr width="70%"/></td></tr>
+          <tr id="next"><td colspan="10">&#160;</td></tr><tr><td colspan="10">&#160;</td></tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

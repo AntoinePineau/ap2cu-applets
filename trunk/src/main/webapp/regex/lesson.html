@@ -1,0 +1,332 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="regex.css"/>
+  </head>
+  <body>
+    <div id="lesson">
+      <h1>
+      <table class="list" cellpadding="0" cellspacing="0">
+        <thead>
+          <th>Construct</th>
+          <th>Matches</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="category" colspan="2">Characters</td>
+          </tr>
+          <tr>
+            <td><em>x</em></td>
+            <td>The character <em>x</em></td>
+          </tr>
+          <tr>
+            <td>\</td>
+            <td>The backslash character</td>
+          </tr>
+          <tr>
+            <td>\0<em>n</em></td>
+            <td>The character with octal value 0<em>n</em>  (0 &lt;= <em>n</em> &lt,= 7)</td>
+          </tr>
+          <tr>
+            <td>\0<em>nn</em></td>
+            <td>The character with octal value 0<em>nn</em>  (0 &lt;= <em>n</em> &lt,= 7)</td>
+          </tr>
+          <tr>
+            <td>\0<em>mnn</em></td>
+            <td>The character with octal value 0<em>mnn</em>  (0 &lt;= <em>m</em> &lt;= 3,0 &lt;= <em>n</em> &lt,= 7)</td>
+          </tr>
+          <tr>
+            <td>\x<em>hh</em></td>
+            <td>The character with hexadecimal value 0x<em>hh</em></td>
+          </tr>
+          <tr>
+            <td>\u<em>hhhh</em></td>
+            <td>The character with hexadecimal value 0x<em>hhhh</em></td>
+          </tr>
+          <tr>
+            <td>\t</td>
+            <td>The tab character</td>
+          </tr>
+          <tr>
+            <td>\n</td>
+            <td>The newline (line-feed) character</td>
+          </tr>
+          <tr>
+            <td>\r</td>
+            <td>The carriage-return character</td>
+          </tr>
+          <tr>
+            <td>\f</td>
+            <td>The form-feed character</td>
+          </tr>
+          <tr>
+            <td>\a</td>
+            <td>The alert (bell) character</td>
+          </tr>
+          <tr>
+            <td>\e</td>
+            <td>The escape character</td>
+          </tr>
+          <tr>
+            <td>\c<em>X</em></td>
+            <td>The control character corresponding to <em>X</em></td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Characters classes</td>
+          </tr>
+          <tr>
+            <td>[abc]</td>
+            <td>a,b or c (simple class)</td>
+          </tr>
+          <tr>
+            <td>[^abc]</td>
+            <td>Any character except a,b or c (negation)</td>
+          </tr>
+          <tr>
+            <td>[a-zA-Z]</td>
+            <td>a through z or A through Z, inclusive (range)</td>
+          </tr>
+          <tr>
+            <td>[a-d[m-p]]</td>
+            <td>a through d, or m through p: [a-dm-p] inclusive (union)</td>
+          </tr>
+          <tr>
+            <td>[a-z&&[def]]</td>
+            <td>d, e or f (intersection)</td>
+          </tr>
+          <tr>
+            <td>[a-z&&[^bc]]</td>
+            <td>a through z, except for b and c: [ad-z] (subtraction)</td>
+          </tr>
+          <tr>
+            <td>[a-z&&[^m-p]]</td>
+            <td>a through z, and not m through p: [a-lq-z] (subtraction)</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Predefined characters classes</td>
+          </tr>
+          <tr>
+            <td>.</td>
+            <td>Any character</td>
+          </tr>
+          <tr>
+            <td>\d</td>
+            <td>A digit: [0-9]</td>
+          </tr>
+          <tr>
+            <td>\D</td>
+            <td>A non-digit: [^0-9]</td>
+          </tr>
+          <tr>
+            <td>\s</td>
+            <td>A whitespace character: [ \t\n\x0B\f\r]</td>
+          </tr>
+          <tr>
+            <td>\S</td>
+            <td>A non-whitespace character: [^\s]</td>
+          </tr>
+          <tr>
+            <td>\w</td>
+            <td>A word character: [a-zA-Z_0-9]</td>
+          </tr>
+          <tr>
+            <td>\W</td>
+            <td>A non-word character: [^\w]</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Boundary matchers</td>
+          </tr>
+          <tr>
+            <td>^</td>
+            <td>The beginning of a line</td>
+          </tr>
+          <tr>
+            <td>$</td>
+            <td>The end of a line</td>
+          </tr>
+          <tr>
+            <td>\b</td>
+            <td>A word boundary</td>
+          </tr>
+          <tr>
+            <td>\B</td>
+            <td>A non-word boundary</td>
+          </tr>
+          <tr>
+            <td>\A</td>
+            <td>The beginning ot the input</td>
+          </tr>
+          <tr>
+            <td>\G</td>
+            <td>The end of the previous match</td>
+          </tr>
+          <tr>
+            <td>\Z</td>
+            <td>The end ot the input but for the final terminator, if any</td>
+          </tr>
+          <tr>
+            <td>\z</td>
+            <td>The end ot the input</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Greedy quantifiers</td>
+          </tr>
+          <tr>
+            <td><em>X</em>?</td>
+            <td><em>X</em>, once or not at all</td>
+          </tr>
+          <tr>
+            <td><em>X</em>*</td>
+            <td><em>X</em>, zero or more times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>+</td>
+            <td><em>X</em>, one or more times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>}</td>
+            <td><em>X</em>, exactly <em>n</em> times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>,}</td>
+            <td><em>X</em>, at least <em>n</em> times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>,<em>p</em>}</td>
+            <td><em>X</em>, at least <em>n</em> times, but not more than <em>p</em> times</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Reluctant quantifiers</td>
+          </tr>
+          <tr>
+            <td><em>X</em>??</td>
+            <td><em>X</em>, once or not at all</td>
+          </tr>
+          <tr>
+            <td><em>X</em>*?</td>
+            <td><em>X</em>, zero or more times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>+?</td>
+            <td><em>X</em>, one or more times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>}?</td>
+            <td><em>X</em>, exactly <em>n</em> times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>,}?</td>
+            <td><em>X</em>, at least <em>n</em> times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>,<em>p</em>}?</td>
+            <td><em>X</em>, at least <em>n</em> times, but not more than <em>p</em> times</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Possessive quantifiers</td>
+          </tr>
+          <tr>
+            <td><em>X</em>?+</td>
+            <td><em>X</em>, once or not at all</td>
+          </tr>
+          <tr>
+            <td><em>X</em>*+</td>
+            <td><em>X</em>, zero or more times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>++</td>
+            <td><em>X</em>, one or more times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>}+</td>
+            <td><em>X</em>, exactly <em>n</em> times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>,}+</td>
+            <td><em>X</em>, at least <em>n</em> times</td>
+          </tr>
+          <tr>
+            <td><em>X</em>{<em>n</em>,<em>p</em>}+</td>
+            <td><em>X</em>, at least <em>n</em> times, but not more than <em>p</em> times</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Logical operators</td>
+          </tr>
+          <tr>
+            <td><em>XY</em></td>
+            <td><em>X</em> followed by <em>Y</em></td>
+          </tr>
+          <tr>
+            <td><em>X</em>|<em>Y</em></td>
+            <td>Either <em>X</em> or <em>Y</em></td>
+          </tr>
+          <tr>
+            <td>(<em>X</em>)</td>
+            <td><em>X</em>, as a capturing group</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Back references</td>
+          </tr>
+          <tr>
+            <td>\<em>n</em></td>
+            <td>Whatever the <em>n</em><sup>th</sup> capturing group matched</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Quotation</td>
+          </tr>
+          <tr>
+            <td>\</td>
+            <td>Nothing, but quotes the following character</td>
+          </tr>
+          <tr>
+            <td>\Q</td>
+            <td>Nothing, but quotes all characters until \E</td>
+          </tr>
+          <tr>
+            <td>\E</td>
+            <td>Nothing, but ends quoting started by \Q</td>
+          </tr>
+          <tr><td colspan="2"/></tr>
+          <tr>
+            <td class="category" colspan="2">Special constructs (non-capturing)</td>
+          </tr>
+          <tr>
+            <td>(?:<em>X</em>)</td>
+            <td><em>X</em>, as a non-capturing group</td>
+          </tr>
+          <tr>
+            <td>(?=<em>X</em>)</td>
+            <td><em>X</em>, via zero-width positive lookahead</td>
+          </tr>
+          <tr>
+            <td>(?!<em>X</em>)</td>
+            <td><em>X</em>, via zero-width negative lookahead</td>
+          </tr>
+          <tr>
+            <td>(?&lt;=<em>X</em>)</td>
+            <td><em>X</em>, via zero-width positive lookbehind</td>
+          </tr>
+          <tr>
+            <td>(?&lt;!<em>X</em>)</td>
+            <td><em>X</em>, via zero-width negative lookbehind</td>
+          </tr>
+          <tr>
+            <td>(?><em>X</em>)</td>
+            <td><em>X</em>, as an independent, non-capturing group</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="examples">
+    
+    </div>
+  </body>
+</html>

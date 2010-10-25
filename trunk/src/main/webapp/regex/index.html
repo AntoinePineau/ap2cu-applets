@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/jquery.js"></script>
+    <script type="text/javascript" src="regex.js"></script>
+    <link type='text/css' href='/res/css/common.css' rel='stylesheet'/>
+    <link type="text/css" rel="stylesheet" href="regex.css"/>
+    <title>Regex Online Tool</title>
+  </head>
+  <body>
+    <h1>Regex Online Tool</h1>
+    <div id="formDiv">
+      <form name="regexForm" method="post">
+        <table id="main" class="main" cellpadding="0" cellspacing="0">
+          <tr id="help"><td/><td colspan="3"><a href="lesson.html">Help</a> / <a href="5-a-7_Expressions-Regulieres.ppt">Lesson (French)</a></td><td colspan="6"/></tr>
+          <tr id="regex"><td/>
+            <td>REGEX:</td><td/>
+            <td><textarea name="regex" cols="30">^(.*)(lo).*([0-9]).*([!?])$</textarea></td><td/><td/>
+            <td class="flags">Flags:<br/><input name="flags" type="text" size="3" value="g"/></td>
+            <td id="flag"/><td/>
+            <td><input type="submit" value="Run"/>&#160;<input type="submit" value="Clear"/></td><td/>
+          </tr>
+          <tr><td/>
+            <td>Replacement:</td><td/>
+            <td><textarea name="repl" cols="30" rows="1">$4 $1icopter #$3</textarea></td><td/>
+          </tr>
+          <tr><td colspan="11">&#160;</td></tr><tr><td colspan="11"><hr width="90%"/></td></tr>
+          <tr id="next"><td colspan="11">&#160;</td></tr><tr><td colspan="11">&#160;</td></tr>
+        </table>
+      </form>
+    </div>
+  </body>
+</html>

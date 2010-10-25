@@ -1,0 +1,74 @@
+var nbInputs=1;
+function addFlags(){
+  var flags={'g':'The "global search" flag makes the RegExp search for a pattern throughout the string, creating an array of all occurrences it can find matching the given pattern.',
+             'i':'The "ignore case" flag makes a regular expression case insensitive. For international coders, note that this might not work on extended characters such as å, ü, ñ, æ.',
+             'm':'The "multiple line" flag makes the beginning of input (^) and end of input ($) codes also catch beginning and end of line respectively.',
+             's':'The "single line" flag makes the dot character (.) correspond to any character whatsoever, even a newline, which is not the case without this option.'};
+  var f = ["g","i","m"];
+  for(i=0;i<f.length;i++){var flag=f[i];var html="<label for='"+flag+"' title='"+flags[flag]+"'>"+flag+":</label>";
+    html+="<input id='"+flag+"' type='checkbox' name='flag' value='"+flag+"' title='"+flags[flag]+"'"+(flag=='g'?" checked='checked'":"")+"/>";
+    $("#flag").html($("#flag").html()+html);
+    if(flag!='m')$("#flag").html($("#flag").html()+"<br/>");
+  }
+}
+function replace(element,i,prefix){element.innerHTML=element.innerHTML.replace(new RegExp(prefix+i,"g"),prefix.replace("\\","")+(i-1))}
+function addLine(){$("#line"+nbInputs).after(addInput(++nbInputs));setEvents();}
+function removeLine(n){
+  $("#line"+n).remove();
+  $("tr[id*=line]").each(function(id){
+    var i=this.id.substring(4);
+    if(i<=nbInputs && i>n) {
+      replace(this,i,"input");
+      replace(this,i,"removeLine\\(");
+      replace(this,i,"bool");
+      replace(this,i,"repl");
+      replace(this,i,"result");
+      replace(this,i,"#");
+    }
+  });
+  for(i=n;i<=nbInputs;i++) $("#main").each(function(id){replace(this,i,"line")});
+  setEvents();nbInputs--;
+}
+function addInput(i){
+  var html="<tr id='line"+i+"'><td/><td>Input #"+i+":</td><td/><td><textarea name='input"+i+"' cols='30'>Hello "+i+" World !</textarea></td><td>";
+  if(i==1)html+="<a title='Add new line' href='javascript:addLine()'><img alt='Add new line' src='../../res/img/list-add.png'/></a>";
+  if(i>1)html+="<a title='Remove this line' href='javascript:removeLine("+i+")'><img alt='Remove this line' src='../../res/img/list-remove.png'/></a>";
+  html+="</td><td/><td>Result #"+i+":</td><td id='bool"+i+"' class='bool'/><td/><td id='result"+i+"'></td><td id='repl"+i+"'></td></tr>";
+  return html;
+}
+function changeFlags(){var flag=document.regexForm["flag"];var flags=document.regexForm["flags"];flags.value="";for(i=0;i<flag.length;i++)if(flag[i].checked)flags.value+=flag[i].value;}
+function addInputs(){for(i=nbInputs;i>0;i--){$("#next").after(addInput(i))}}
+function clear(){for(i=1;i<=nbInputs;i++){$("#result"+i).html("");$("#repl"+i).html("");$("#bool"+i).html("");document.regexForm["input"+i].value="";}document.regexForm["regex"].value="";document.regexForm["repl"].value="";$("input[name=flags]").each(function(){this.value=""});$("input[name=flag]").each(function(){this.checked=false});}
+function run(){
+  var regex = document.regexForm["regex"].value;var flags = document.regexForm["flags"].value;
+  try{
+    for(i=1;i<=nbInputs;i++) {
+      $("#result"+i).html("");$("#repl"+i).html("");
+      var rx=new RegExp(regex,flags);var input=document.regexForm["input"+i].value;var result=rx.exec(input);var repl=document.regexForm["repl"].value;
+      $("#bool"+i).html("<div class='"+(result?"ok":"ko")+"'>"+(result?"OK":"KO")+"</div>");
+      if(result) {
+        var groups = "<table class='results'><tr>";
+        for(j=1;j<result.length;j++)groups+="<td class='group title'>$"+j+"</td><td/>";groups+= "</tr><tr>";
+        for(j=1;j<result.length;j++)groups+="<td class='group'>"+result[j]+"</td><td/>";groups+= "</tr></table>";
+        $("#result"+i).html(groups);
+        if(repl!="")$("#repl"+i).html("<table class='results'><tr><td class='group title'>Replacement</td></tr><tr><td class='group'>"+input.replace(rx,repl)+"</td></tr></table");
+      }
+    }
+  }catch(e){alert("The regular expression "+regex+" is not valid:\n"+e)}
+  return false;
+}
+function setEvents(){
+  $("form[name=regexForm] input[type=submit][value=Clear]").click(clear);
+  $("form[name=regexForm] input[type=submit][value=Run]").click(run);
+  $("form[name=regexForm]").submit(function(){return false;});
+  $("textarea,input[type=text]").focus(function(){this.select()});
+}
+$(document).ready(function(){addInputs();addFlags();setEvents();
+  $("input[name=flag]").click(changeFlags);
+  $("input[name=flags]").keyup(function(){
+    var flag=document.regexForm["flag"];var flags=document.regexForm["flags"];
+    if(!/^[gim]{0,3}?$/.test(flags.value)){alert("Flags should be g, i, or m");changeFlags();}
+    for(i=0;i<flag.length;i++)flag[i].checked = flags.value.indexOf(flag[i].value)>-1;
+  });
+});
+    
