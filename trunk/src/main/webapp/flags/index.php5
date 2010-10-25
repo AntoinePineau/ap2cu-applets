@@ -2,8 +2,7 @@
   $size=$_GET["size"];
   $country=strtoupper($_GET["country"]);
   $type=strtolower($_GET["type"]);
-  
-  if($type!="jpeg" && type!="gif") $type="png";
+  if($type!="jpeg" && $type!="gif") $type="png";
   header("Content-type: image/".$type);
 
   $t=getFlagSizePosition($size, $country);
