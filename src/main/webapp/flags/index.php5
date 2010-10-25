@@ -16,6 +16,10 @@
     if(imageCopy($flag, $image, 0, 0, $x, $y, 10304, 55)) {
       if($type=="gif") imageGIF($flag);
       else if($type=="jpeg") imageJPEG($flag);
+      else if($type=="gd") imageGD($flag);
+      else if($type=="gd2") imageGD2($flag);
+      else if($type=="xbm") imageXBM($flag);
+      else if($type=="wbmp") imageWBMP($flag);
       else imagePNG($flag);
       imageDestroy($flag);
     }
