@@ -1,7 +1,7 @@
 <?php
   header("Content-type: image/png");
   $size = $_GET["size"];
-  $country = $_GET["country"];
+  $country = strtoupper($_GET["country"]);
 
   $t = getFlagSizePosition($size, $country);
   $width = $t[0];
