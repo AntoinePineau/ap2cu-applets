@@ -59,9 +59,17 @@ function convertCP2UTF16 ( textString, special ) {
   if (textString.length == 0) { return ''; }
   textString = textString.replace(/\s+/g, ' ');
   var listArray = textString.split(' ');
+
+  var excludedChars = convertChar2CP(document.unicode.excludedChars.value).split(' ');
+  var regexString = '^(3[0-9]|4[1-9A-F]|5[0-9AF]|6[1-9A-F]|7[0-9A]';
+  for ( var i = 0; i < excludedChars.length; i++ )
+    regexString += '|'+excludedChars[i];
+  regexString += ')$';  
+  var regex = new RegExp(regexString, 'i');
+  
   for ( var i = 0; i < listArray.length; i++ ) {
     var n = parseInt(listArray[i], 16);
-    if(special && (n==32 || n>=48 && n<=57 || n>=65 && n<=90 || n==95 || n>=97 && n<=122)) {
+    if(special && regex.test(listArray[i])) { 
       outputString += convertCP2Char(listArray[i], true);
     }
     else {
@@ -78,9 +86,18 @@ function convertCP2UTF8 ( textString, special ) {
   if (textString.length == 0) { return ''; }
   textString = textString.replace(/\s+/g, ' ');
   var listArray = textString.split(' ');
+  
+  var excludedChars = convertChar2CP(document.unicode.excludedChars.value).split(' ');
+  var regexString = '^(3[0-9]|4[1-9A-F]|5[0-9AF]|6[1-9A-F]|7[0-9A]';
+  for ( var i = 0; i < excludedChars.length; i++ )
+    regexString += '|'+excludedChars[i];
+  regexString += ')$';  
+  var regex = new RegExp(regexString, 'i');
+  
   for ( var i = 0; i < listArray.length; i++ ) {
     var n = parseInt(listArray[i], 16);
-    if(special && (n==32 || n>=48 && n<=57 || n>=65 && n<=90 || n==95 || n>=97 && n<=122)) {
+    //alert(regex+' :::: '+listArray[i]+' :::: '+regex.test(listArray[i]));
+    if(special && regex.test(listArray[i])) { 
       outputString += convertCP2Char(listArray[i], true);
     }
     else {
@@ -216,8 +233,8 @@ function urlEncodedChanged() {
 }
 function utf8EncodedChanged() {
   var special = document.unicode.specialonly.checked;
-  document.unicode.decoded.value = convertCP2Char(document.unicode.codePoints.value, special);
   document.unicode.codePoints.value = convertUTF82CP(document.unicode.utf8Encoded.value, special);
+  document.unicode.decoded.value = convertCP2Char(document.unicode.codePoints.value, special);
   document.unicode.utf16Encoded.value = convertCP2UTF16(document.unicode.codePoints.value, special);
   document.unicode.urlEncoded.value = URLencode(document.unicode.decoded.value, special);
 }
@@ -239,7 +256,7 @@ function specialChanged() {
   <input type="hidden" size="50" name="codePoints"/>
   <table border="0">
     <tr>
-      <td colspan="3">Only encode special characters (matching <a target="_blank" href="/tools/regex/lesson.html">\w</a>): <input type="checkbox" name="specialonly" onchange="specialChanged();"/></td>
+      <td colspan="3">Only encode special characters that don't match [<a target="_blank" href="/tools/regex/lesson.html">\w</a><input name="excludedChars" type="text" value="., ();:" onchange="specialChanged();"/>] <input type="checkbox" name="specialonly" onchange="specialChanged();"/></td>
     </tr>
     <tr><td colspan="3">&#160;</td></tr>
     <tr>
