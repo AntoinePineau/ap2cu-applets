@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/jquery.js"></script>
+    <title>AP2cu - Developer Online tools and Web Services</title>
+    <style type="text/css">
+      #online-tools { float:left; }
+      #web-services { float:right; }
+		  #online-tools,#web-services { width:50%; }
+      #text-to-translate,#languages { width:46%; display:inline; }
+		  h3 { margin:20px 0 0; }
+		  .link a, .link form, .link form#languages * { margin-left:20px; }
+      form { display:inline-block; }
+  </style>
+  <link type="text/css" href="/res/css/common.css" rel="stylesheet"/>
+  <script>
+    function concatenateLanguages() {    
+      var langs = "", lang = document.languages.lang;
+      if(lang.length != null) {
+        for(var i=0;i<lang.length;i++) if(lang[i].checked) langs+=lang[i].value+",";
+        langs = langs.substring(0,langs.length-1);
+      }
+      else
+        langs = lang.value;
+      document.translation.langs.value = langs;
+    }
+  </script>  
+  </head>
+  <body>
+    <h1>Developer Online tools and Web Services</h1>
+    <div id="online-tools">
+      <h2>Online tools</h2>
+      <h3>Regular Expressions</h3>
+      <span class="link"><a target="_blank" href="/tools/regex">Regular Expressions Online Tester</a></span>
+      <h3>XPath</h3>
+      <span class="link"><a target="_blank" href="/tools/xpath">XPath (XML/XSLT) Online Tester</a></span>
+      <h3>CSS Tidy</h3>
+      <span class="link"><a target="_blank" href="/tools/css/csstidy1.3/css_optimiser.php">Compress your CSS with CSS Tidy</a></span>
+      <h3>Javascript</h3>
+      <span class="link"><a target="_blank" href="/tools/javascript">Javascript Online Tester</a></span><br/>
+      <span class="link"><a target="_blank" href="http://javascriptcompressor.com/">Javascript Compressor</a></span><br/>
+      <span class="link"><a target="_blank" href="http://jsbeautifier.org/">Javascript Beautifier</a></span><br/>
+      <span class="link"><a target="_blank" href="/tools/javascript/jquery_help.png">JQuery javascript library</a></span>
+      <h3>Icomatics</h3>
+      <span class="link"><a target="_blank" href="/tools/icomatics/flags/how-to.html">Automatic flag icons</a></span>
+      <h3>POST / GET to a given URL</h3>
+      <span class="link"><a target="_blank" href="/tools/post-get">Send headers, post or get variables to a given URL</a></span>
+      <h3>Is Prime ?</h3>
+      <span class="link"><a target="_blank" href="/tools/prime">Check whether a number is prime or not</a></span>
+      <h3>How to use..</h3>
+      <span class="link"><a target="_blank" href="/tools/vi">vi editor</a></span><br/>
+      <span class="link"><a target="_blank" href="/tools/javascript/jquery_help.png">JQuery javascript library</a></span>
+      <h3>Encoding</h3>
+      <span class="link"><a target="_blank" href="/tools/encoding">Encode / Decode</a></span><br/><br/>
+    </div>
+    <div id="web-services">
+      <h2>Web Services</h2>
+      <h3>Geolocalisation</h3>
+      <span class="link"><a target="_blank" href="/tools/geolocalisation">Geolocalisation by IP</a></span>
+      <h3>Translation</h3>
+      <span class="link">
+        <form id="languages" name="languages" action="javascript:void(0);">
+        Choose Languages: <span id="show" onclick="$('#langs').show();$('#show').hide();$('#hide').show()">(Show)</span><span id="hide" style="display:none" onclick="$('#langs').hide();$('#show').show();$('#hide').hide();">(Hide)</span><br/>
+        <div id="langs" style="display:none">
+			    <input type="checkbox" name="lang" value="sq"><img src="/res/img/countries/al.gif">Albanian</input><br/>
+					<input type="checkbox" name="lang" value="ca"><img src="/res/img/countries/es.gif">Catalan</input><br/>
+					<input type="checkbox" name="lang" value="zh-CN"><img src="/res/img/countries/cn.gif">Chinese (Simplified)</input><br/>
+					<input type="checkbox" name="lang" value="zh-TW"><img src="/res/img/countries/cn.gif">Chinese (Traditional)</input><br/>
+					<input type="checkbox" name="lang" value="hr"><img src="/res/img/countries/hr.gif">Croatian</input><br/>
+					<input type="checkbox" name="lang" value="cs"><img src="/res/img/countries/cz.gif">Czech</input><br/>
+					<input type="checkbox" name="lang" value="da"><img src="/res/img/countries/dk.gif">Danish</input><br/>
+					<input type="checkbox" name="lang" value="nl"><img src="/res/img/countries/nl.gif">Dutch</input><br/>
+					<input type="checkbox" name="lang" value="en" checked="true"><img src="/res/img/countries/uk.gif">English</input><br/>
+					<input type="checkbox" name="lang" value="et"><img src="/res/img/countries/ee.gif">Estonian</input><br/>
+					<input type="checkbox" name="lang" value="tl"><img src="/res/img/countries/ph.gif">Filipino</input><br/>
+					<input type="checkbox" name="lang" value="fi"><img src="/res/img/countries/fi.gif">Finnish</input><br/>
+					<input type="checkbox" name="lang" value="fr" checked="true"><img src="/res/img/countries/fr.gif">French</input><br/>
+					<input type="checkbox" name="lang" value="gl"><img src="/res/img/countries/es.gif">Galician</input><br/>
+					<input type="checkbox" name="lang" value="de"><img src="/res/img/countries/de.gif">German</input><br/>
+					<input type="checkbox" name="lang" value="el"><img src="/res/img/countries/gr.gif">Greek</input><br/>
+					<input type="checkbox" name="lang" value="iw"><img src="/res/img/countries/il.gif">Hebrew</input><br/>
+					<input type="checkbox" name="lang" value="hi"><img src="/res/img/countries/in.gif">Hindi</input><br/>
+					<input type="checkbox" name="lang" value="hu"><img src="/res/img/countries/hu.gif">Hungarian</input><br/>
+					<input type="checkbox" name="lang" value="id"><img src="/res/img/countries/id.gif">Indonesian</input><br/>
+					<input type="checkbox" name="lang" value="it"><img src="/res/img/countries/it.gif">Italian</input><br/>
+					<input type="checkbox" name="lang" value="ja"><img src="/res/img/countries/jp.gif">Japanese</input><br/>
+					<input type="checkbox" name="lang" value="ko"><img src="/res/img/countries/kr.gif">Korean</input><br/>
+					<input type="checkbox" name="lang" value="lv"><img src="/res/img/countries/lv.gif">Latvian</input><br/>
+					<input type="checkbox" name="lang" value="lt"><img src="/res/img/countries/lt.gif">Lithuanian</input><br/>
+					<input type="checkbox" name="lang" value="mt"><img src="/res/img/countries/mt.gif">Maltese</input><br/>
+					<input type="checkbox" name="lang" value="no"><img src="/res/img/countries/no.gif">Norwegian</input><br/>
+					<input type="checkbox" name="lang" value="pl"><img src="/res/img/countries/pl.gif">Polish</input><br/>
+					<input type="checkbox" name="lang" value="pt"><img src="/res/img/countries/pt.gif">Portuguese</input><br/>
+					<input type="checkbox" name="lang" value="ro"><img src="/res/img/countries/ro.gif">Romanian</input><br/>
+					<input type="checkbox" name="lang" value="sr"><img src="/res/img/countries/rs.gif">Serbian</input><br/>
+					<input type="checkbox" name="lang" value="sk"><img src="/res/img/countries/sk.gif">Slovak</input><br/>
+					<input type="checkbox" name="lang" value="sl"><img src="/res/img/countries/si.gif">Slovenian</input><br/>
+					<input type="checkbox" name="lang" value="es" checked="true"><img src="/res/img/countries/es.gif">Spanish</input><br/>
+					<input type="checkbox" name="lang" value="sv"><img src="/res/img/countries/se.gif">Swedish</input><br/>
+					<input type="checkbox" name="lang" value="tr"><img src="/res/img/countries/tr.gif">Turkish</input><br/>
+					<input type="checkbox" name="lang" value="vi"><img src="/res/img/countries/vn.gif">Vietnamese</input><br/>
+					<input type="checkbox" name="lang" value="ar"><img src="/res/img/countries/sa.gif">Arabic</input><br/>
+					<input type="checkbox" name="lang" value="bg"><img src="/res/img/countries/bg.gif">Bulgarian</input><br/>
+					<input type="checkbox" name="lang" value="uk"><img src="/res/img/countries/ua.gif">Ukrainian</input><br/>
+					<input type="checkbox" name="lang" value="ru"><img src="/res/img/countries/ru.gif">Russian</input><br/>
+					<input type="checkbox" name="lang" value="th"><img src="/res/img/countries/th.gif">Thai</input><br/>
+        </div>
+        </form>
+        <div id="text-to-translate">
+          <form name="translation" method="GET" action="translation" onsubmit="return concatenateLanguages();" target="_blank">
+            <textarea name="text"></textarea><br/>
+            <input type="submit" value="Translate"/>
+            <input type="hidden" name="langs"/>
+          </form>
+        </div>
+      </span>
+      <h3>Encoding in HTML entity code</h3>
+      <span class="link">
+        <form name="encode" method="GET" action="encoding/encodeFromURL.php" target="_blank">
+          <textarea name="text"></textarea><input type="hidden" name="to" value="UTF-8"/><br/>
+          <input type="submit" value="Encode in Decimal HTML entity code"/><br/>
+          <input type="submit" value="Encode in HexaDecimal HTML entity code" onclick="document.encode.to.value='UTF-16'"/>
+        </form>
+      </span><br/><br/>
+    </div>
+    <div id="games">
+      <br/><br/>
+      <h2>Jeux</h2>
+      <h3>Chiffres et Lettres</h3>
+      <span class="link"><a target="_blank" href="/tools/chiffres-lettres/le-compte-est-bon.html">Le Compte est Bon</a></span><br/>
+      <span class="link"><a target="_blank" href="/tools/chiffres-lettres/le-mot-le-plus-long.html">Le Mot le plus Long</a></span><br/>
+      <span class="link"><a target="_blank" href="/tools/chiffres-lettres/aide-au-scrabble.html">Aide au Scrabble</a></span><br/>
+    </div>
+  </body>
+</html>
