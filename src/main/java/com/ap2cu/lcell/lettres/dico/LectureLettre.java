@@ -26,11 +26,11 @@ public class LectureLettre {
   public boolean lireCaractereCorrect()throws IOException{
     lireCaractere();
 
-    if (dernierChar=='é' || dernierChar=='è' || dernierChar=='ê') dernierChar='e';
-    if (dernierChar=='à') dernierChar='a';
-    if (dernierChar=='ç') dernierChar='c';
-    if (dernierChar=='ù' || dernierChar=='û') dernierChar='u';
-    if (dernierChar=='ï' || dernierChar=='î') dernierChar='i';
+    if (dernierChar=='Ã©' || dernierChar=='Ã¨' || dernierChar=='Ãª') dernierChar='e';
+    if (dernierChar=='Ã ') dernierChar='a';
+    if (dernierChar=='Ã§') dernierChar='c';
+    if (dernierChar=='Ã¹' || dernierChar=='Ã»') dernierChar='u';
+    if (dernierChar=='Ã¯' || dernierChar=='Ã®') dernierChar='i';
 
     return ( ((dernierChar>='a') && (dernierChar<='z') ) ||((dernierChar>='A')&& (dernierChar<='Z'))
              || (dernierChar=='-'));
