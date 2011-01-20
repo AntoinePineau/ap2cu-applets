@@ -25,7 +25,7 @@ public class RegleChiffres extends Regle {
 
   public RegleChiffres() throws ConfigurationException {
     super(RegleChiffres.class.getResource("config/regles.xml"));
-  }
+  } 
 
   public TirageChiffres genererTirage() {
     if (tirageChiffres != null) {
