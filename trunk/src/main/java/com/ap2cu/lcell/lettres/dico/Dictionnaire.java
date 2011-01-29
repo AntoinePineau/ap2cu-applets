@@ -1,12 +1,17 @@
 package com.ap2cu.lcell.lettres.dico;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Locale;
 
+import com.ap2cu.lcell.exception.ConfigurationException;
 import com.ap2cu.lcell.exception.DictionnaireException;
+import com.ap2cu.lcell.lettres.regles.RegleLettres;
+import com.ap2cu.lcell.lettres.tirage.TirageLettres;
 
 /**
  * @author PINEAU Antoine
@@ -34,6 +39,9 @@ public class Dictionnaire {
   // C O N S T R U C T E U R S
   // ==================================================
 
+  public Dictionnaire() {    
+  }
+  
   public static Dictionnaire getDictionnaire(Locale locale) throws DictionnaireException {
     Dictionnaire d = dictionnaires.get(locale);
     if(d==null) {
@@ -42,17 +50,21 @@ public class Dictionnaire {
     }
     return d;
   }
-  
+
   public static Dictionnaire getDictionnaire() throws DictionnaireException {
-    return getDictionnaire(Locale.FRANCE);
+    Locale locale = Locale.getDefault();
+    if (!locale.getLanguage().equals("fr") && !locale.getLanguage().equals("en") && !locale.getLanguage().equals("es"))
+      locale = Locale.UK;
+    return getDictionnaire(locale);
   }
   
   public Dictionnaire(Locale locale, boolean autoriserNomsPropres) throws DictionnaireException {
-    this("config/" + locale.getLanguage() + ".dico", 9, autoriserNomsPropres);
+    this("config/" + locale.getLanguage() + ".dic", 9, autoriserNomsPropres);
   }
 
   protected Dictionnaire(String filename, int nbr_lettres, boolean autoriserNomsPropres) throws DictionnaireException {
     try {
+      System.out.println("Loading "+filename);
       InputStream inputStream = getClass().getResourceAsStream(filename);
       this.fichierDictionnaire = filename;
       this.nbr_lettres = nbr_lettres;
@@ -107,7 +119,7 @@ public class Dictionnaire {
   private boolean existe(String word, int cursor, ListeLexicale position) {
     if ((word.charAt(cursor) == position.getC()) || (position.getC() == word.charAt(cursor) && cursor == 0)) {
       if (word.length() - 1 == cursor)
-        return position.getFinDeMot();
+        return position.isFinDeMot();
       if (position.getLettreSuivante() != null)
         return existe(word, cursor + 1, position.getLettreSuivante());
     }
@@ -124,7 +136,42 @@ public class Dictionnaire {
       debut = new ListeLexicale(word.charAt(0));
     insert(word, 0, debut);
   }
+  
+  public static void serialiser(String filenameInput, String filenameOutput) throws IOException, DictionnaireException {
+    Dictionnaire dico = new Dictionnaire();
+    FileReader fr = new FileReader(filenameInput);
+    BufferedReader br = new BufferedReader(fr);
+    String word = "";
+    while(br.ready()) {
+      word = br.readLine();
+      dico.insert(word);
+    }
+    dico.sauver(filenameOutput);
+    fr.close();
+    br.close();
+  }
 
+  
+  public static void main1(String[] args) throws IOException, DictionnaireException {
+    String folder = "C:/Users/Antoine PINEAU/workspace/AP2cu - Applets/src/main/java/com/ap2cu/lcell/lettres/dico/config/";
+    System.out.println("Serialiser...");
+    serialiser(folder+"dico_fr.txt", folder+"fr.dic");
+    System.out.println("Serialisando...");
+    serialiser(folder+"dico_es.txt", folder+"es.dic");
+    System.out.println("Serialize...");
+    serialiser(folder+"dico_en.txt", folder+"en.dic");
+  }
+  
+  public static void main(String[] args) throws IOException, DictionnaireException, ConfigurationException {
+    Dictionnaire dico = Dictionnaire.getDictionnaire(new Locale("es"));
+    RegleLettres regles = new RegleLettres();
+    TirageLettres tirage = regles.genererTirage();
+    tirage.setDico(dico);
+    System.out.println(tirage.getLettres());
+    System.out.print(" => ");
+    System.out.println(tirage.donnerSolution());
+  }
+  
   private void insert(String word, int cursor, ListeLexicale position) {
     if (word.charAt(cursor) == position.getC()) {
       if (word.length() - 1 == cursor)
@@ -160,8 +207,12 @@ public class Dictionnaire {
   }
 
   public void deserialiser() throws DictionnaireException {
+    deserialiser(fichierDictionnaire);
+  }
+  
+  public void deserialiser(String filename) throws DictionnaireException {
     try {
-      FileWriter c = new FileWriter(fichierDictionnaire);
+      FileWriter c = new FileWriter(filename);
       debut.deserialiser(c);
       c.close();
     }
@@ -180,7 +231,7 @@ public class Dictionnaire {
   }
 
   private void print(String pre, ListeLexicale c) {
-    if (c.getFinDeMot()) {
+    if (c.isFinDeMot()) {
       System.out.println(pre + c.getC());
     }
     if (c.getLettreSuivante() != null) {
@@ -191,7 +242,12 @@ public class Dictionnaire {
     }
   }
 
+
   public void sauver() throws DictionnaireException {
+    sauver(fichierDictionnaire);
+  }
+  
+  public void sauver(String fichierDictionnaire) throws DictionnaireException {
     if (debut != null) {
       try {
         FileWriter c = new FileWriter(fichierDictionnaire);
@@ -199,7 +255,7 @@ public class Dictionnaire {
         c.close();
       }
       catch (IOException e) {
-        throw new DictionnaireException("Le dictionnaire n'a pas pu être sauvé dans " + fichierDictionnaire, e);
+        throw new DictionnaireException("Le dictionnaire n'a pas pu etre sauve dans " + fichierDictionnaire, e);
       }
       modifie = false;
     }
@@ -213,7 +269,7 @@ public class Dictionnaire {
   }
 
   private void fusion(ListeLexicale c, String pre) {
-    if (c.getFinDeMot()) {
+    if (c.isFinDeMot()) {
       insert(pre + c.getC());
     }
     if (c.getLettreSuivante() != null) {

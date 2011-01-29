@@ -23,26 +23,42 @@ public class LectureLettre {
     return fin;
   }
 
+  public final static String REGEX_A = "[àáâãäåÀÁÂÃÄÅ]";
+  public final static String REGEX_C = "[çÇ]";
+  public final static String REGEX_E = "[èéêëÈÉÊË]";
+  public final static String REGEX_I = "[ìíîïÌÍÎÏ]";
+  public final static String REGEX_N = "[ñÑ]";
+  public final static String REGEX_O = "[òóôõöÒÓÔÕÖ]";
+  public final static String REGEX_U = "[ùúûüÙÚÛÜ]";
+  public final static String REGEX_Y = "[ýÿÝ]";
+  public final static String REGEX_WORD = "[A-Za-z-]";
+  
+  public static char removeAccent(char character) {
+    String c = ""+character;
+    if (c.matches(REGEX_A)) return 'A';
+    if (c.matches(REGEX_C)) return 'C';
+    if (c.matches(REGEX_E)) return 'E';
+    if (c.matches(REGEX_I)) return 'I';
+    if (c.matches(REGEX_N)) return 'N';
+    if (c.matches(REGEX_O)) return 'O';
+    if (c.matches(REGEX_U)) return 'U';
+    if (c.matches(REGEX_Y)) return 'Y';
+    return c.toUpperCase().charAt(0);
+  }
+  
   public boolean lireCaractereCorrect()throws IOException{
     lireCaractere();
-
-    if (dernierChar=='é' || dernierChar=='è' || dernierChar=='ê') dernierChar='e';
-    if (dernierChar=='à') dernierChar='a';
-    if (dernierChar=='ç') dernierChar='c';
-    if (dernierChar=='ù' || dernierChar=='û') dernierChar='u';
-    if (dernierChar=='ï' || dernierChar=='î') dernierChar='i';
-
-    return ( ((dernierChar>='a') && (dernierChar<='z') ) ||((dernierChar>='A')&& (dernierChar<='Z'))
-             || (dernierChar=='-'));
+    String c = removeAccent(dernierChar)+"";
+    return c.matches(REGEX_WORD);
   }
 
 
   public char lireCaractere()throws IOException{
-    char c=dernierChar;
+    char old=dernierChar;
     int i=inputStream.read();
     if ((i==-1)) fin=true;
-    dernierChar=(char)i;
-    return c;
+    dernierChar=removeAccent((char)i);
+    return old;
   }
 
   public char voirCaractere()throws IOException{

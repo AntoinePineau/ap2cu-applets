@@ -53,7 +53,7 @@ public class RegleLettres extends Regle {
   public Points attribuerNombreDePoints(Solution solution, Tirage tirage) {
     try {
       if(solution == null || solution.estVide())
-        return new Points(0, "Vous n'avez rien proposé");
+        return new Points(0, "Vous n'avez rien propose");
       tirage.verifierSolutionProposee(solution);
       int nombreDeLettres = ((SolutionLettres) solution).getMot().length();
       return new Points(nombreDePointsParLettres*nombreDeLettres, "Mot de "+nombreDeLettres+" lettres");
