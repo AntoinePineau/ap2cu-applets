@@ -10,10 +10,12 @@ import com.ap2cu.lcell.chiffres.solution.SolutionChiffres;
 import com.ap2cu.lcell.chiffres.tirage.TirageChiffres;
 import com.ap2cu.lcell.exception.ConfigurationException;
 import com.ap2cu.lcell.lettres.dico.Dictionnaire;
+import com.ap2cu.lcell.lettres.regles.ListeDeMots;
 import com.ap2cu.lcell.lettres.regles.RegleLettres;
 import com.ap2cu.lcell.lettres.solution.SolutionLettres;
 import com.ap2cu.lcell.lettres.tirage.TirageLettres;
 import com.ap2cu.postget.Form;
+import com.ap2cu.xml.XMLUtils;
 
 public class AP2cuApplet extends Applet {
 
@@ -27,6 +29,10 @@ public class AP2cuApplet extends Applet {
 
   public com.ap2cu.primality.Number getNumber(long l) {
     return new com.ap2cu.primality.Number(l);
+  }
+  
+  public XMLUtils getXMLUtils() {
+    return XMLUtils.getXMLUtils();
   }
 
   public RegleChiffres obtenirLesReglesDuCompteEstBon() throws ConfigurationException {
@@ -67,8 +73,11 @@ public class AP2cuApplet extends Applet {
 
   public static void main(String[] args) throws Exception {
     AP2cuApplet ap2cu = new AP2cuApplet();
-//    System.out.println(Dictionnaire.getDictionnaire().existe("SERF"));
-    System.out.println(ap2cu.creerTirageLettres("ERTUADEFE").trouverTousLesMots().recupererMotsDe_X_Lettres(3));
+    System.out.println("  LATINE  existe ? "+Dictionnaire.getDictionnaire().existe("LATINE"));
+    System.out.println("  LATINES existe ? "+Dictionnaire.getDictionnaire().existe("LATINES"));
+    ListeDeMots l = ap2cu.creerTirageLettres("LATINESA").trouverTousLesMots();
+    System.out.println("Mots de 6 lettres: "+l.recupererMotsDe_X_Lettres(6));
+    System.out.println("Mots de 7 lettres: "+l.recupererMotsDe_X_Lettres(7));
 //    testerLeCompteEstBon(ap2cu);
 //    testerLeMotLePlusLong(ap2cu);
   }
