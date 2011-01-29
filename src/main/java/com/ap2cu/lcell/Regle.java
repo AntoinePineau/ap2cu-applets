@@ -19,7 +19,7 @@ public abstract class Regle {
     }
     catch(Exception e) {
       System.out.println(e.getMessage());
-      throw new ConfigurationException("Erreur pendant le chargement des règles "+url, e);
+      throw new ConfigurationException("Erreur pendant le chargement des regles "+url, e);
     }
   }
   

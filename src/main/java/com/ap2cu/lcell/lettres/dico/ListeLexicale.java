@@ -4,23 +4,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Une plaque pour gérer le dictionnaire.
+ * Une plaque pour gï¿½rer le dictionnaire.
  * <p>Copyright: Copyright (c) 2004 CLOUET Xavier, MAS Romain, PASSAGOT Romain, PINEAU Antoine, REYNAUD Alexandre</p>
  *
- * This file is part of Des chiffres et des lettres en réseau.
+ * This file is part of Des chiffres et des lettres en rï¿½seau.
  *
- *  Des chiffres et des lettres en réseau is free software; you can redistribute it and/or modify
+ *  Des chiffres et des lettres en rï¿½seau is free software; you can redistribute it and/or modify
  * it under the terms of the LGPL Lesser General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
  *
- *  Des chiffres et des lettres en réseau is distributed in the hope that it will be useful,
+ *  Des chiffres et des lettres en rï¿½seau is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * LGPL Lesser General Public License for more details.
  *
  *  You should have received a copy of the LGPL Lesser General Public License
- * along with Des chiffres et des lettres en réseau; if not, write to the Free Software
+ * along with Des chiffres et des lettres en rï¿½seau; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * @author CLOUET Xavier
@@ -89,7 +89,7 @@ public class ListeLexicale {
     /**
      *@return finDeMot if this ListeLexicale is the end of a word
      */
-    public boolean getFinDeMot(){
+    public boolean isFinDeMot(){
         return finDeMot;
     }
 
@@ -122,22 +122,22 @@ public class ListeLexicale {
      *varying: (number of lettreRemplacantees after this, number of lettreSuivantes after this)
      */
     public void sauver(FileWriter out) throws IOException{
-        out.write(c);
-        if (finDeMot) { // if this character is the end of a word
-            if((lettreSuivante==null)&&(lettreRemplacante==null)) {//if this ListeLexicale points toward nothing
-                out.write('*');
-                return;
-            }else
-                out.write('$');
-        }
-        if (lettreSuivante==null)// if there is no lettreSuivante
-            out.write('/');
-        else
-            lettreSuivante.sauver(out);
-        if (lettreRemplacante==null)//if there is no lettreRemplacante
-            out.write('/');
-        else
-            lettreRemplacante.sauver(out);
+      out.write(LectureLettre.removeAccent(c));
+      if (finDeMot) { // if this character is the end of a word
+          if((lettreSuivante==null)&&(lettreRemplacante==null)) {//if this ListeLexicale points toward nothing
+              out.write('*');
+              return;
+          }else
+              out.write('$');
+      }
+      if (lettreSuivante==null)// if there is no lettreSuivante
+          out.write('/');
+      else
+          lettreSuivante.sauver(out);
+      if (lettreRemplacante==null)//if there is no lettreRemplacante
+          out.write('/');
+      else
+          lettreRemplacante.sauver(out);
     }
 
 

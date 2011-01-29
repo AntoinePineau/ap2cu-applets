@@ -26,7 +26,9 @@ public final class CalculDuMotLePlusLong {
     for (char c : lettres.toCharArray())
       v.add(c);
     ListeDeMots mots = new ListeDeMots();
+    long timestamp = System.currentTimeMillis();
     motLePlusLong(v, dico.getDebut(), "", mots);
+    System.out.println(" => "+(System.currentTimeMillis()-timestamp));
     mots.trier();
     return mots;
   }
@@ -39,13 +41,13 @@ public final class CalculDuMotLePlusLong {
     return motLePlusLong(v, dico.getDebut(), "", new ListeDeMots()).toUpperCase();
   }
   
-
+  
   @SuppressWarnings("unchecked")
   private String motLePlusLong(Vector<Character> m, ListeLexicale position, String s, ListeDeMots mots) {
-    // il y a 3 moyens d'obtenir un résultat
+    // il y a 3 moyens d'obtenir un resultat
     String res1 = "%";// si la lettre est contenue dans le vecteur
     String res2 = "%";// si elle n'est pas dans le vecteur
-    String res3 = "%";// si le mot est terminé
+    String res3 = "%";// si le mot est termine
 
     Vector<Character> m2 = (Vector<Character>) m.clone();
 
@@ -55,18 +57,18 @@ public final class CalculDuMotLePlusLong {
       if (c == ((Character) m.get(i)).charValue()) {
 
         // si c'est une fin de mot
-        if (position.getFinDeMot())
+        if (position.isFinDeMot())
           res3 = "" + c;
         m2.remove(i);
 
-        // si on peut encore aller à droite
+        // si on peut encore aller a droite
         if (position.getLettreSuivante() != null) {
           String tmp = motLePlusLong(m2, position.getLettreSuivante(), s + c, mots);
           if (!tmp.equals("%")) {
             res1 = c + tmp;
           }
         }
-        m2 = (Vector) m.clone();
+        m2 = (Vector<Character>) m.clone();
       }
     }
 
@@ -77,7 +79,7 @@ public final class CalculDuMotLePlusLong {
         mots.add(res2);
     }
 
-    // cas d'arrêt de la récursivité
+    // cas d'arret de la recursivite
     if (res1.equals("%")) {
       if (res2.equals("%")) {
         if (dico.existe(res3) && !mots.contains(res3))

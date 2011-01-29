@@ -1,14 +1,14 @@
 package com.ap2cu.lcell.lettres.regles;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
 
 import com.ap2cu.lcell.lettres.dico.ComparateurDeMots;
 import com.ap2cu.lcell.lettres.dico.Ordre;
 import com.ap2cu.lcell.lettres.solution.ListeDeSolutionsLettres;
 import com.ap2cu.lcell.lettres.solution.SolutionLettres;
 
-public class ListeDeMots extends Vector<String> {
+public class ListeDeMots extends ArrayList<String> {
 
   private static final long serialVersionUID = 1L;
 

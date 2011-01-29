@@ -40,6 +40,10 @@ public class TirageLettres extends Tirage {
   public String getLettres() {
     return lettres;
   }
+  
+  public void setDico(Dictionnaire dico) {
+    this.dico = dico;
+  }
 
   public ListeDeMots trouverTousLesMots() {
     CalculDuMotLePlusLong motLePlusLong = new CalculDuMotLePlusLong(lettres, dico);
@@ -58,13 +62,13 @@ public class TirageLettres extends Tirage {
   public void verifierSolutionProposee(Solution solution) throws SolutionIncorrecteException {
     String mot = ((SolutionLettres) solution).getMot().toUpperCase();
 
-    // vérifier qu'on a pris les lettres autorisées
+    // vï¿½rifier qu'on a pris les lettres autorisï¿½es
     for (char c : mot.toCharArray()) {
       if (!lettres.contains(c + ""))
         throw new SolutionIncorrecteException("La lettre " + c + " ne fait pas partie du tirage");
     }
 
-    // vérifier que le mot existe bien dans le dictionnaire
+    // vï¿½rifier que le mot existe bien dans le dictionnaire
     if(!dico.existe(mot))
       throw new SolutionIncorrecteException("Le mot "+mot+" n'existe pas dans le dictionnaire");
   }
