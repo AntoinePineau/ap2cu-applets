@@ -75,7 +75,7 @@ public class TirageChiffres extends Tirage {
   @Override
   public void verifierSolutionProposee(Solution solution) throws SolutionIncorrecteException {
     SolutionChiffres calcul = (SolutionChiffres) solution;
-    // vérifier que ce calcul utilise des nombres autorisés
+    // verifier que ce calcul utilise des nombres autorises
     Vector<Integer> nombresAutorises = new Vector<Integer>();
     for (int i : chiffres)
       nombresAutorises.add(i);
@@ -104,11 +104,11 @@ public class TirageChiffres extends Tirage {
         }
       }
       if (!op1_trouve || !op2_trouve) {
-        throw new SolutionIncorrecteException("Des nombres non-autorisées ont été choisis");
+        throw new SolutionIncorrecteException("Des nombres non-autorises ont ete choisis");
       }
     }
 
-    // vérifier qu'il n'y a pas d'erreur de calcul
+    // verifier qu'il n'y a pas d'erreur de calcul
     calcul.verifier();
   }
 

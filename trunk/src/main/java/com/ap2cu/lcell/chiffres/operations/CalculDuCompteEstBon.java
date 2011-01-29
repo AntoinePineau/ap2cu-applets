@@ -8,9 +8,9 @@ import com.ap2cu.lcell.chiffres.solution.SolutionChiffres;
 public final class CalculDuCompteEstBon {
 
   private int plaque[][]; // tableau pour traiter les plaques
-  private int ecart; // ecart entre le resultat en cours et à trouver au cas ou
+  private int ecart; // ecart entre le resultat en cours et a trouver au cas ou
   // le compte est impossible
-  private int resultatAAtteindre; // resultat à trouver
+  private int resultatAAtteindre; // resultat a trouver
   private SolutionChiffres solutionTemporaire; // sauvegarde
   // de la
   // solution
@@ -85,16 +85,16 @@ public final class CalculDuCompteEstBon {
     if (resultatTrouve)
       return;
 
-    // si nous sommes au niveau 0 c'est que la solution n'a pas été trouvée
+    // si nous sommes au niveau 0 c'est que la solution n'a pas ete trouvee
     if (niveau == 0) {
       return;
     }
 
     /*
      * boucle for pour traiter toutes les combinaisons par niveau pour une
-     * rangée de plaque si des plaques sont identiques on traite plusieurs fois
-     * les même combinaiasons cette boucle a pour but de ne traiter par la suite
-     * que les combinaisons interessantes à traiter, elle ralentit le traitement
+     * rangee de plaque si des plaques sont identiques on traite plusieurs fois
+     * les meme combinaiasons cette boucle a pour but de ne traiter par la suite
+     * que les combinaisons interessantes a traiter, elle ralentit le traitement
      * de la boucle lorsque toutes les plaques sont differentes mais l'accelere
      * enormement lorsqu'elles sont identiques. elle a aussi l'avantage de
      * filtrer une premiere fois les solutions en eliminant les solutions
@@ -124,7 +124,7 @@ public final class CalculDuCompteEstBon {
       }
     }
 
-    // Début du traitement de toutes les combinaisons //
+    // Debut du traitement de toutes les combinaisons //
     int compt = 0;
     while (combinaison[0][compt] != 0) {
       /*
@@ -153,8 +153,8 @@ public final class CalculDuCompteEstBon {
         pointeur++;
       }
       /*
-       * maintenant on traite toutes les opérations possible sur les 2 plaques
-       * selectionnées precedement
+       * maintenant on traite toutes les operations possible sur les 2 plaques
+       * selectionnees precedement
        */
       // ADDITION
       testerOperation(niveau, chiffre1, Operation.ADDITION, chiffre2);
