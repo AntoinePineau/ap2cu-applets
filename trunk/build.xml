@@ -39,7 +39,7 @@
           C O M P I L A T I O N
          ================================= -->
 	<target name="Compile" description="Compile sources" depends="Init">
-		<javac srcdir="${src}" destdir="${bin}" debug="on" classpath="${lib}/dom4j-1.6.1.jar" />
+		<javac srcdir="${src}" destdir="${bin}" debug="on" classpath="${lib}/dom4j-1.6.1.jar" encoding="UTF-8" />
 		<copy todir="${bin}">
 			<fileset dir="${src}"/>
 		</copy>
