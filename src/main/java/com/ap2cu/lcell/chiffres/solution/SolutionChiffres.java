@@ -84,7 +84,7 @@ public class SolutionChiffres implements Solution {
   public void verifier() throws SolutionIncorrecteException {
     for (LigneDeCalcul ligne : lignes) {
       if (!ligne.estCorrecte())
-        throw new SolutionIncorrecteException("Il y a une erreur de calcul à la ligne " + ligne);
+        throw new SolutionIncorrecteException("Il y a une erreur de calcul a la ligne " + ligne);
     }
   }
 
