@@ -50,11 +50,11 @@ public class RegleChiffres extends Regle {
   public Points attribuerNombreDePoints(Solution solution, Tirage tirage) {
     try {
       if(solution == null || solution.estVide())
-        return new Points(0, "Vous n'avez rien proposé");
+        return new Points(0, "Vous n'avez rien proposï¿½");
       tirage.verifierSolutionProposee(solution);
       int resultat = ((SolutionChiffres) solution).getResultat();
       int resultatAAtteindre = ((TirageChiffres) tirage).getResultatAAtteindre();
-      return resultat == resultatAAtteindre ? new Points(nombreDePointsPourLeBonCompte, "Le compte est bon") : new Points(nombreDePointsPourUnCompteApproche, "Compte approché");
+      return resultat == resultatAAtteindre ? new Points(nombreDePointsPourLeBonCompte, "Le compte est bon") : new Points(nombreDePointsPourUnCompteApproche, "Compte approche");
     }
     catch (Exception e) {
      return new Points(0, e.getMessage());
