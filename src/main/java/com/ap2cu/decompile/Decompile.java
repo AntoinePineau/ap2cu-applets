@@ -1,6 +1,7 @@
 package com.ap2cu.decompile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.zip.ZipFile;
 
 import net.sf.jdec.config.Configuration;
@@ -28,9 +29,7 @@ public class Decompile {
     Configuration.setTempDir(bin);
     Configuration.setSkipClassVersionCheck("true");
     Configuration.setBkpoppath(src);
-    ConsoleLauncher.decompileJar(jarFile);
-    FileUtils.zipFolder(new File(src), ".*", sourceZipFile);
-    
+    ConsoleLauncher.decompileJarAndZip(jarFile, sourceZipFile.getAbsolutePath());
     FileUtils.deleteFile(binFolder);
     FileUtils.deleteFile(srcFolder);
     
