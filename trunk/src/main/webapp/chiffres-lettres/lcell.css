@@ -24,12 +24,12 @@ tr.ligne td * {
 	vertical-align: middle
 }
 
-.tirageChiffres #resultatAAtteindre,.tirageLettres {
+.tirageChiffres #resultatAAtteindre,.tirageLettres span {
 	font-size: 35px;
 	font-weight: lighter;
 	text-align: center;
 	color: #CC2222;
-	background-color: #FFFB00;
+	background-color: #EEEEEE;
 	border: solid 1px #000
 }
 
@@ -38,7 +38,7 @@ tr.ligne td * {
 	font-weight: bold;
 	text-align: center;
 	color: #CC2222;
-	background-color: #FFFB00;
+	background-color: #EEEEEE;
 	border: solid 1px #000;
 	width: 30px
 }
@@ -47,8 +47,8 @@ tr.ligne td * {
 	font-size: 35px;
 	font-weight: lighter;
 	text-align: center;
-	color: #FFFB00;
-	background-color: #2222CC;
+	color: #FFFFBB;
+	background-color: #004455;
 	border: solid 1px #000
 }
 
@@ -56,8 +56,8 @@ tr.ligne td * {
 	font-size: 17px;
 	font-weight: bold;
 	text-align: center;
-	color: #FFFB00;
-	background-color: #2222CC;
+	color: #FFFFBB;
+	background-color: #004455;
 	border: solid 1px #000;
 	width: 80px
 }
@@ -76,7 +76,11 @@ tr.ligne td * {
 	width:100%
 }
 
-body,#compteEstBon,#compteEstBon *,#motLePlusLong,#motlePlusLong * {
+body,#compteEstBon,#compteEstBon *,#motLePlusLong {
 	text-align: center;
 	width: 100%;
 }
+
+.resultatLettres {
+	text-align:center;
+} 
