@@ -122,9 +122,9 @@ foreach($ipaddresses as $ipaddress) {
       "address" => array(
           "ip"       => $ipaddress,
           "provider" => array (
-              "isp"          => $mm_isp ,
-              "organization" => $mm_organization ,
-              "name"         => $provider 
+              "isp"          => htmlentities($mm_isp) ,
+              "organization" => htmlentities($mm_organization) ,
+              "name"         => htmlentities($provider) 
           ) ,
           "location" => array (
               "coordinates"  => array (
@@ -134,18 +134,18 @@ foreach($ipaddresses as $ipaddress) {
               "details"      => array (
                   "country"    => array (
                       "code" => $countrycode ,
-                      "name" => $countryname
+                      "name" => htmlentities($countryname)
                   )  ,
                   "region"     => array (
                       "code" => $mm_regioncode ,
-                      "name" => $mm_regionname
+                      "name" => htmlentities($mm_regionname)
                   )  ,
                   "department" => array (
-                      "code" => $ip2dep
+                      "code" => htmlentities($ip2dep)
                   )  ,
                   "city"       => array (
                       "code" => $zipcode ,
-                      "name" => $city
+                      "name" => htmlentities($mm_city)
                   )
               )           
           )
