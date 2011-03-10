@@ -119,12 +119,12 @@ $maxLat=-999999999;
   if(isset($maxLat)){if($maxLat<$mm_latitude){$maxLat=$mm_latitude;}}else{$maxLat=$mm_latitude;}
 ?>
   <address ip="<?=$ipaddress?>">
-    <provider isp="<?=$mm_isp?>" organization="<?=$mm_organization?>"><![CDATA[<?=$provider?>]]></provider>
+    <provider isp="<?=$mm_isp?>" organization="<?=$mm_organization?>"><![CDATA[<?=htmlentities($provider)?>]]></provider>
     <location latitude="<?=$mm_latitude?>" longitude="<?=$mm_longitude?>">
-      <country code="<?=$countrycode?>" img="<?=$countryimg?>"><![CDATA[<?=$countryname?>]]></country>
-      <region code="<?=$mm_regioncode?>"><![CDATA[<?=$mm_regionname?>]]></region>
-      <departement><![CDATA[<?=$ip2dep?>]]></departement>
-      <city zipcode="<?=$zipcode?>"><![CDATA[<?=$city?>]]></city>
+      <country code="<?=$countrycode?>" img="<?=$countryimg?>"><![CDATA[<?=htmlentities($countryname)?>]]></country>
+      <region code="<?=$mm_regioncode?>"><![CDATA[<?=htmlentities($mm_regionname)?>]]></region>
+      <departement><![CDATA[<?=htmlentities($ip2dep)?>]]></departement>
+      <city zipcode="<?=$zipcode?>"><![CDATA[<?=htmlentities($mm_city)?>]]></city>
     </location>
   </address>
 <?  }?>
