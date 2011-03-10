@@ -1,11 +1,9 @@
 <?php 
-
-header("Content-Type:application/json");
-
-
+header("Content-Type:text/xml; charset=UTF-8");
+echo "<?xml version='1.0' encoding='UTF-8'?>\n";
 
 function logError($message) {
-  echo json_encode(array("error"=>$message));
+  echo "<geolocalisation><error>$message</error></geolocalisation>";
   die;
 }
 
@@ -97,10 +95,9 @@ $minLong=999999999;
 $maxLong=-999999999;
 $minLat=999999999;
 $maxLat=-999999999;
-
-$jsonString = "";
-
-foreach($ipaddresses as $ipaddress) {
+?>
+<geolocalisation>
+<?foreach($ipaddresses as $ipaddress) {
   list($mm_countrycode, $mm_regioncode, $mm_regionname, $mm_city, $mm_zipcode, $mm_latitude, $mm_longitude, $mm_metrocode, $mm_areacode, $mm_isp, $mm_organization) =  getLocationWithMaxMind($ipaddress); 
   //list($provider,$ip2ville,$ip2depcp,$ip2dep,$ip2pays,$ip2payscode,$ip2paysimg)=getLocationWithWeLiveFr($ipaddress);
 
@@ -120,41 +117,16 @@ foreach($ipaddresses as $ipaddress) {
   if(isset($maxLong)){if($maxLong<$mm_longitude){$maxLong=$mm_longitude;}}else{$maxLong=$mm_longitude;}
   if(isset($minLat)){if($minLat>$mm_latitude){$minLat=$mm_latitude;}}else{$minLat=$mm_latitude;}
   if(isset($maxLat)){if($maxLat<$mm_latitude){$maxLat=$mm_latitude;}}else{$maxLat=$mm_latitude;}
-
-  $jsonString = array(
-      "address" => array(
-          "ip"       => $ipaddress,
-          "provider" => array (
-              "isp"          => $mm_isp ,
-              "organization" => $mm_organization ,
-              "name"         => $provider 
-          ) ,
-          "location" => array (
-              "coordinates"  => array (
-                  "latitude"  => $mm_latitude ,
-                  "longitude" => $mm_longitude
-              ),
-              "details"      => array (
-                  "country"    => array (
-                      "code" => $countrycode ,
-                      "name" => $countryname
-                  )  ,
-                  "region"     => array (
-                      "code" => $mm_regioncode ,
-                      "name" => $mm_regionname
-                  )  ,
-                  "department" => array (
-                      "code" => $ip2dep
-                  )  ,
-                  "city"       => array (
-                      "code" => $zipcode ,
-                      "name" => $city
-                  )
-              )           
-          )
-      )
-  );
-}
-  echo json_encode($jsonString);
 ?>
+  <address ip="<?=$ipaddress?>">
+    <provider isp="<?=$mm_isp?>" organization="<?=$mm_organization?>"><![CDATA[<?=$provider?>]]></provider>
+    <location latitude="<?=$mm_latitude?>" longitude="<?=$mm_longitude?>">
+      <country code="<?=$countrycode?>" img="<?=$countryimg?>"><![CDATA[<?=$countryname?>]]></country>
+      <region code="<?=$mm_regioncode?>"><![CDATA[<?=$mm_regionname?>]]></region>
+      <departement><![CDATA[<?=$ip2dep?>]]></departement>
+      <city zipcode="<?=$zipcode?>"><![CDATA[<?=$city?>]]></city>
+    </location>
+  </address>
+<?  }?>
+</geolocalisation>
 
