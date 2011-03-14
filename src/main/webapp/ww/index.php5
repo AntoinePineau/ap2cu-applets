@@ -21,6 +21,9 @@
     <style type="text/css">
       input { text-align:right; width:50px }
       #int { width:10px; margin-left:0 }
+      tr.bordered td, tr.bordered td * { color:#CC2222; font-style:italic }
+      /*tr.bordered td { border-top:1px solid #CC2222; border-bottom:1px solid #CC2222 }*/
+      h3 { color:#CC2222 }
     </style>
     <script type="text/javascript">
       function get(id) { var v = parseFloat($('#'+id).val()); return isNaN(v) ? 0 : v; }      
@@ -47,30 +50,30 @@
   <body>
     <h1>Weight Watchers ProPoints calculator</h1>    
     <form method="">
-    <table>
+    <table cellspacing="0">
       <tr>
-        <td><label for="p">Proteins</label></td>
+        <td><label for="p">Proteins&#160;&#160;</label></td>
         <td><input id="p" name="p" type="text" value="<?=$p?>"/> g</td>
       </tr>
       <tr>
-        <td><label for="l">Lipids</label></td>
+        <td><label for="l">Lipids&#160;&#160;</label></td>
         <td><input id="l" name="l" type="text" value="<?=$l?>"/> g</td>
       </tr>
       <tr>
-        <td><label for="f">Fibers</label></td>
+        <td><label for="f">Fibers&#160;&#160;</label></td>
         <td><input id="f" name="f" type="text" value="<?=$f?>"/> g</td>
       </tr>
       <tr>
-        <td><label for="g">Glucids</label></td>
+        <td><label for="g">Glucids&#160;&#160;</label></td>
         <td><input id="g" name="g" type="text" value="<?=$g?>"/> g</td>
       </tr>
-      <tr>
-        <td><label for="q"><i>Quantity</i></label></td>
+      <tr class="bordered">
+        <td><label for="q">Quantity&#160;&#160;</label></td>
         <td><input id="q" name="q" type="text" value="<?=$q?>"/> g</td>
       </tr>
       <tr>
         <td><h3 id="points"><?=$points?></h3></td>
-        <td><label><input type="checkbox" checked="checked" id="int" name="int">Integer</label></td>
+        <td><label><input type="checkbox" checked="checked" id="int" name="int" title="If checked, the result will be approximated to the closest integer value">Integer</label></td>
       </tr>
       <tr>
         <td>&#160;</td>
