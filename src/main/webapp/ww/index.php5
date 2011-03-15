@@ -11,7 +11,7 @@
   $points = ($p/10.9375+$l/3.888883+$f/35.00049+$g/9.2105535)*$q/100;
   $points = $int == "on" ? rnd($points) : rnd(100*points)/100;
 
-  $title = $lang == 'fr' ? 'Calculatrice WeightWatchers ProPoints' : ($lang == 'es' ? 'Calculadora WeightWatchers ProPoints' : 'Weight Watchers ProPoints Calculator');
+  $title = $lang == 'fr' ? 'Calculatrice WeightWatchers<sup>&copy;</sup> ProPoints<sup>&reg;</sup>' : ($lang == 'es' ? 'Calculadora WeightWatchers<sup>&copy;</sup> ProPoints<sup>&reg;</sup>' : 'Weight Watchers<sup>&copy;</sup> ProPoints<sup>&reg;</sup> Calculator');
   $pLabel = $lang == 'fr' ? 'Protéïnes' : ($lang == 'es' ? 'Proteínas' : 'Proteins');
   $lLabel = $lang == 'fr' ? 'Lipides' : ($lang == 'es' ? 'Lípidos' : 'Lipids');
   $fLabel = $lang == 'fr' ? 'Fibres' : ($lang == 'es' ? 'Fibras' : 'Fiber');
@@ -27,7 +27,7 @@
 ?>
 <html>
   <head>
-    <title>WeightWatchers ProPoints Calculator - Calculatrice - Calculadora</title>
+    <title>WeightWatchers&copy; ProPoints&reg; Calculator - Calculatrice - Calculadora</title>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
     <link type='text/css' href='/res/css/common.css' rel='stylesheet'/>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
