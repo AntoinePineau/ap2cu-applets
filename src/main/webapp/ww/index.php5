@@ -104,7 +104,7 @@
       h3 { color:#CC2222; padding-left: 5px; text-align:left}
       table { border-collapse:collapse }
       table tbody, table tfoot tr { border:solid 2px #E0E0E0; }  
-      thead tr th { padding-bottom:5px; border:1px outset white; text-align:left; } 
+      thead tr th { padding-bottom:5px; text-align:left; } 
       tbody tr td { padding: 5px } 
       tfoot tr th { padding-top:10px } 
       .food { display:<?=$modeActivity?'none':''?>; }
@@ -113,7 +113,7 @@
         background-color:#AEAEAE;
         border-radius:10px 10px 0 0;
         -moz-border-radius:10px 10px 0 0;
-        padding:10px 10px 5px 0;
+        padding:10px 10px 5px 5px;
         cursor:pointer;
       }
       .tab.selected { background-color:#E0E0E0; }
