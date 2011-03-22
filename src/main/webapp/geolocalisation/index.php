@@ -17,8 +17,6 @@
     <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
     <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script type="text/javascript" src="http://code.google.com/intl/fr/apis/gears/gears_init.js"></script> 
-    <script type="text/javascript" src="http://isithackday.com/hacks/geo/yql-geo-library/yqlgeo.js"></script>
     <script type="text/javascript" src="js/geocode.js"></script>
     <script type="text/javascript">
     function locate() {
@@ -26,7 +24,7 @@
       $('#loading').html('&#160;&#160;<img src="/res/img/ajax-loader.gif" title="loading..." alt="loading..."/>&#160;&#160;Wait...');
       if(mode == 'ip') {
         var ip = $('#ip').val();
-        $.get('jsonservice.php5?ip='+ip, function(data) {
+        $.get('service/json/?ip='+ip, function(data) {
           var x = parseFloat(data.address.location.coordinates.latitude);
           var y = parseFloat(data.address.location.coordinates.longitude);
           positionToAddress(new google.maps.LatLng(x, y), ip);
