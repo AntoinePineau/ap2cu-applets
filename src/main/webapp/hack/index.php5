@@ -7,7 +7,7 @@
   $subject = $_GET['subject']; if($subject=='') $subject = 'IP lookup hack';
 
   if($mailto) {
-    $geo=json_decode(file_get_contents('http://ap2cu.com/tools/geolocalisation/jsonservice.php5?ip='.$ip));
+    $geo=json_decode(file_get_contents('http://ap2cu.com/tools/geolocalisation/service/json/?ip='.$ip));
     $loc = $geo->address->location->details;
 
     $msg = '<h1>IP lookup hack</h1>';
