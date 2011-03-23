@@ -24,6 +24,7 @@
       else
         langs = lang.value;
       document.translation.langs.value = langs;
+      document.translation.text.value = encodeURIComponent(document.translation.text.value);
     }
   </script>  
   </head>
@@ -66,58 +67,58 @@
         <form id="languages" name="languages" action="javascript:void(0);">
         Choose Languages: <span id="show" onclick="$('#langs').show();$('#show').hide();$('#hide').show()">(Show)</span><span id="hide" style="display:none" onclick="$('#langs').hide();$('#show').show();$('#hide').hide();">(Hide)</span><br/>
         <div id="langs" style="display:none">
-          <input type="checkbox" name="lang" value="af"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ZA">Afrikaans</input><br/>
-          <input type="checkbox" name="lang" value="sq"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=AL">Albanian</input><br/>
-          <input type="checkbox" name="lang" value="ar"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SA">Arabic</input><br/>
-          <input type="checkbox" name="lang" value="be"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=BY">Belarusian</input><br/>
-          <input type="checkbox" name="lang" value="bg"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=BG">Bulgarian</input><br/>
-          <input type="checkbox" name="lang" value="ca"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ES">Catalan</input><br/>
-          <input type="checkbox" name="lang" value="zh-CN"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=CN">Chinese Simplified</input><br/>
-          <input type="checkbox" name="lang" value="zh-TW"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=TW">Chinese Traditional</input><br/>
-          <input type="checkbox" name="lang" value="hr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=HR">Croatian</input><br/>
-          <input type="checkbox" name="lang" value="cs"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=CZ">Czech</input><br/>
-          <input type="checkbox" name="lang" value="da"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=DK">Danish</input><br/>
-          <input type="checkbox" name="lang" value="nl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=NL">Dutch</input><br/>
-          <input type="checkbox" name="lang" value="en"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=GB">English</input><br/>
-          <input type="checkbox" name="lang" value="et"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=EE">Estonian</input><br/>
-          <input type="checkbox" name="lang" value="tl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=PH">Filipino</input><br/>
-          <input type="checkbox" name="lang" value="fi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=FI">Finnish</input><br/>
-          <input type="checkbox" name="lang" value="fr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=FR">French</input><br/>
-          <input type="checkbox" name="lang" value="gl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ES">Galician</input><br/>
-          <input type="checkbox" name="lang" value="de"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=DE">German</input><br/>
-          <input type="checkbox" name="lang" value="el"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=GR">Greek</input><br/>
-          <input type="checkbox" name="lang" value="ht"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=HT">Haitian Creole</input><br/>
-          <input type="checkbox" name="lang" value="iw"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IL">Hebrew</input><br/>
-          <input type="checkbox" name="lang" value="hi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IN">Hindi</input><br/>
-          <input type="checkbox" name="lang" value="hu"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=HU">Hungarian</input><br/>
-          <input type="checkbox" name="lang" value="is"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IS">Icelandic</input><br/>
-          <input type="checkbox" name="lang" value="id"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ID">Indonesian</input><br/>
-          <input type="checkbox" name="lang" value="ga"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IE">Irish</input><br/>
-          <input type="checkbox" name="lang" value="it"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IT">Italian</input><br/>
-          <input type="checkbox" name="lang" value="ja"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=JP">Japanese</input><br/>
-          <input type="checkbox" name="lang" value="lv"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=LV">Latvian</input><br/>
-          <input type="checkbox" name="lang" value="lt"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=LT">Lithuanian</input><br/>
-          <input type="checkbox" name="lang" value="mk"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=MK">Macedonian</input><br/>
-          <input type="checkbox" name="lang" value="ms"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=MY">Malay</input><br/>
-          <input type="checkbox" name="lang" value="mt"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=MT">Maltese</input><br/>
-          <input type="checkbox" name="lang" value="no"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=NO">Norwegian</input><br/>
-          <input type="checkbox" name="lang" value="fa"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IR">Persian</input><br/>
-          <input type="checkbox" name="lang" value="pl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=PL">Polish</input><br/>
-          <input type="checkbox" name="lang" value="pt"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=PT">Portuguese</input><br/>
-          <input type="checkbox" name="lang" value="ro"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=RO">Romanian</input><br/>
-          <input type="checkbox" name="lang" value="ru"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=RU">Russian</input><br/>
-          <input type="checkbox" name="lang" value="sr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=RS">Serbian</input><br/>
-          <input type="checkbox" name="lang" value="sk"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SK">Slovak</input><br/>
-          <input type="checkbox" name="lang" value="sl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SL">Slovenian</input><br/>
-          <input type="checkbox" name="lang" value="es"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ES">Spanish</input><br/>
-          <input type="checkbox" name="lang" value="sw"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=CD">Swahili</input><br/>
-          <input type="checkbox" name="lang" value="sv"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SE">Swedish</input><br/>
-          <input type="checkbox" name="lang" value="th"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=TH">Thai</input><br/>
-          <input type="checkbox" name="lang" value="tr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=TR">Turkish</input><br/>
-          <input type="checkbox" name="lang" value="uk"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=UA">Ukrainian</input><br/>
-          <input type="checkbox" name="lang" value="vi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=VN">Vietnamese</input><br/>
-          <input type="checkbox" name="lang" value="cy"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=GB">Welsh</input><br/>
-          <input type="checkbox" name="lang" value="yi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IL">Yiddish</input><br/>
+          <label><input type="checkbox" name="lang" value="af"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ZA">Afrikaans</input></label><br/>
+          <label><input type="checkbox" name="lang" value="sq"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=AL">Albanian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ar"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SA">Arabic</input></label><br/>
+          <label><input type="checkbox" name="lang" value="be"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=BY">Belarusian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="bg"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=BG">Bulgarian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ca"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ES">Catalan</input></label><br/>
+          <label><input type="checkbox" name="lang" value="zh-CN"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=CN">Chinese Simplified</input></label><br/>
+          <label><input type="checkbox" name="lang" value="zh-TW"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=TW">Chinese Traditional</input></label><br/>
+          <label><input type="checkbox" name="lang" value="hr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=HR">Croatian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="cs"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=CZ">Czech</input></label><br/>
+          <label><input type="checkbox" name="lang" value="da"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=DK">Danish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="nl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=NL">Dutch</input></label><br/>
+          <label><input type="checkbox" name="lang" value="en"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=GB">English</input></label><br/>
+          <label><input type="checkbox" name="lang" value="et"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=EE">Estonian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="tl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=PH">Filipino</input></label><br/>
+          <label><input type="checkbox" name="lang" value="fi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=FI">Finnish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="fr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=FR">French</input></label><br/>
+          <label><input type="checkbox" name="lang" value="gl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ES">Galician</input></label><br/>
+          <label><input type="checkbox" name="lang" value="de"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=DE">German</input></label><br/>
+          <label><input type="checkbox" name="lang" value="el"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=GR">Greek</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ht"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=HT">Haitian Creole</input></label><br/>
+          <label><input type="checkbox" name="lang" value="iw"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IL">Hebrew</input></label><br/>
+          <label><input type="checkbox" name="lang" value="hi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IN">Hindi</input></label><br/>
+          <label><input type="checkbox" name="lang" value="hu"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=HU">Hungarian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="is"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IS">Icelandic</input></label><br/>
+          <label><input type="checkbox" name="lang" value="id"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ID">Indonesian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ga"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IE">Irish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="it"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IT">Italian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ja"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=JP">Japanese</input></label><br/>
+          <label><input type="checkbox" name="lang" value="lv"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=LV">Latvian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="lt"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=LT">Lithuanian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="mk"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=MK">Macedonian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ms"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=MY">Malay</input></label><br/>
+          <label><input type="checkbox" name="lang" value="mt"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=MT">Maltese</input></label><br/>
+          <label><input type="checkbox" name="lang" value="no"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=NO">Norwegian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="fa"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IR">Persian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="pl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=PL">Polish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="pt"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=PT">Portuguese</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ro"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=RO">Romanian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="ru"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=RU">Russian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="sr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=RS">Serbian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="sk"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SK">Slovak</input></label><br/>
+          <label><input type="checkbox" name="lang" value="sl"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SL">Slovenian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="es"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=ES">Spanish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="sw"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=CD">Swahili</input></label><br/>
+          <label><input type="checkbox" name="lang" value="sv"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=SE">Swedish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="th"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=TH">Thai</input></label><br/>
+          <label><input type="checkbox" name="lang" value="tr"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=TR">Turkish</input></label><br/>
+          <label><input type="checkbox" name="lang" value="uk"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=UA">Ukrainian</input></label><br/>
+          <label><input type="checkbox" name="lang" value="vi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=VN">Vietnamese</input></label><br/>
+          <label><input type="checkbox" name="lang" value="cy"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=GB">Welsh</input></label><br/>
+          <label><input type="checkbox" name="lang" value="yi"><img src="http://ap2cu.com/tools/icomatics/flags/?size=small&country=IL">Yiddish</input></label><br/>
         </div>
         </form>
         <div id="text-to-translate">
