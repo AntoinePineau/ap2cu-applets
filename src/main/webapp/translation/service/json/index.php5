@@ -82,7 +82,7 @@ header("Content-Type:application/json");
     list($translation, $detect) = translate($text, $lang);
     if($detectedLanguage == '') $detectedLanguage = $detect;
     $to = translationAsJSON($lang,$values[0],$values[1],$translation);
-    $tos[$lang] = $to;
+    $tos->$lang = $to;
   }
 
   if($detectedLanguage != '') {
