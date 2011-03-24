@@ -1,71 +1,15 @@
 <?php
 
-  function translate($word, $targetLanguage) {
-    $key = 'AIzaSyDgRuw8vFN_oaiKRMR1XY8IrYW2ywMwyvc';
-    $json = json_decode(file_get_contents("https://www.googleapis.com/language/translate/v2?key=$key&q=$word&target=$targetLanguage"));
-    return $json->data->translations[0]->translatedText;
-  }
+function toString($language) {
+  return $language->flag.' <b>'.$language->name.'</b> : '.$language->text.'<br/>';
+}
 
-  function getLanguagesForGoogle() {
-    $langs = array(
-      "af"=>"Afrikaans,ZA",
-      "sq"=>"Albanian,AL",
-      "ar"=>"Arabic,SA",
-      "be"=>"Belarusian,BY",
-      "bg"=>"Bulgarian,BG",
-      "ca"=>"Catalan,ES",
-      "zh-CN"=>"Chinese Simplified,CN",
-      "zh-TW"=>"Chinese Traditional,TW",
-      "hr"=>"Croatian,HR",
-      "cs"=>"Czech,CZ",
-      "da"=>"Danish,DK",
-      "nl"=>"Dutch,NL",
-      "en"=>"English,GB",
-      "et"=>"Estonian,EE",
-      "tl"=>"Filipino,PH",
-      "fi"=>"Finnish,FI",
-      "fr"=>"French,FR",
-      "gl"=>"Galician,ES",
-      "de"=>"German,DE",
-      "el"=>"Greek,GR",
-      "ht"=>"Haitian Creole,HT",
-      "iw"=>"Hebrew,IL",
-      "hi"=>"Hindi,IN",
-      "hu"=>"Hungarian,HU",
-      "is"=>"Icelandic,IS",
-      "id"=>"Indonesian,ID",
-      "ga"=>"Irish,IE",
-      "it"=>"Italian,IT",
-      "ja"=>"Japanese,JP",
-      "lv"=>"Latvian,LV",
-      "lt"=>"Lithuanian,LT",
-      "mk"=>"Macedonian,MK",
-      "ms"=>"Malay,MY",
-      "mt"=>"Maltese,MT",
-      "no"=>"Norwegian,NO",
-      "fa"=>"Persian,IR",
-      "pl"=>"Polish,PL",
-      "pt"=>"Portuguese,PT",
-      "ro"=>"Romanian,RO",
-      "ru"=>"Russian,RU",
-      "sr"=>"Serbian,RS",
-      "sk"=>"Slovak,SK",
-      "sl"=>"Slovenian,SL",
-      "es"=>"Spanish,ES",
-      "sw"=>"Swahili,CD",
-      "sv"=>"Swedish,SE",
-      "th"=>"Thai,TH",
-      "tr"=>"Turkish,TR",
-      "uk"=>"Ukrainian,UA",
-      "vi"=>"Vietnamese,VN",
-      "cy"=>"Welsh,GB",
-      "yi"=>"Yiddish,IL"
-    );
-    return $langs;
-  }
+$url = 'http://ap2cu.com/tools/translation/service/json/?text='.$_GET['text'].'&langs='.$_GET['langs'];
+$json = json_decode(file_get_contents($url));
 
-  $languages = getLanguagesForGoogle();
-  $text = urldecode($_GET["text"]);
+foreach($json->translation->from as $code => $f) {
+  $from = toString($json->translation->from->$code);
+}
 ?>
 <html>
   <head>
@@ -77,11 +21,10 @@
     <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
   </head>
   <body>
+   <b>Translated from</b> <?=$from?><br/>
 <?
-  foreach(split(",", $_GET["langs"]) as $lang) {
-    $values = split(",",$languages[$lang]);
-    $translation = translate($text, $lang);
-    echo "<img src='http://ap2cu.com/tools/icomatics/flags/?size=small&country=".$values[1]."' alt='$lang'/> ".$values[0]." => ".$translation."<br/>";
+  foreach($json->translation->to as $code => $to) {
+    echo toString($json->translation->to->$code);
   }
 ?>
   </body>
