@@ -59,7 +59,7 @@
   $iLabel = $lang == 'fr' ? 'Intensité' : ($lang == 'es' ? 'Intensidad' : 'Intensity');
 
   $i1 = $lang == 'fr' ? 'Faible' : ($lang == 'es' ? 'Baja' : 'Low');
-  $i2 = $lang == 'fr' ? 'Modérée' : ($lang == 'es' ? 'Moderadad' : 'Moderate');
+  $i2 = $lang == 'fr' ? 'Modérée' : ($lang == 'es' ? 'Moderada' : 'Moderate');
   $i3 = $lang == 'fr' ? 'Elevée' : ($lang == 'es' ? 'Alta' : 'High');
 
   $p = $_GET["p"];
