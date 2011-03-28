@@ -4,11 +4,11 @@ function toString($language) {
   return $language->flag.' <b>'.$language->name.'</b> : '.$language->text.'<br/>';
 }
 
-$url = 'http://ap2cu.com/tools/translation/service/json/?text='.$_GET['text'].'&langs='.$_GET['langs'];
-$json = json_decode(file_get_contents($url));
+$url = 'http://ap2cu.com/tools/translation/service/json/?text='.urlencode($_GET['text']).'&langs='.$_GET['langs'];
+$translation = json_decode(file_get_contents($url))->translation;
 
-foreach($json->translation->from as $code => $f) {
-  $from = toString($json->translation->from->$code);
+foreach($translation->from as $code => $f) {
+  $from = toString($translation->from->$code);
 }
 ?>
 <html>
@@ -23,8 +23,8 @@ foreach($json->translation->from as $code => $f) {
   <body>
    <b>Translated from</b> <?=$from?><br/>
 <?
-  foreach($json->translation->to as $code => $to) {
-    echo toString($json->translation->to->$code);
+  foreach($translation->to as $code => $to) {
+    echo toString($translation->to->$code);
   }
 ?>
   </body>
