@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Resizable iframes : How to resize automatically an iframe according to its content</title>
+    <style type="text/css">
+      pre, pre * { font-family: Courier New; }
+    </style>
+    <script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/stat.js"></script>
+    <script type="text/javascript" src="http://ap2cu.com/res/js/jquery.js"></script>
+    <link type="text/css" href="http://ap2cu.com/res/css/common.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <h1>How to resize automatically an iframe according to its content ?</h1>
+    <h2>Cross Domain</h2>
+    <p>
+      <b>Parent Site</b><br/>
+      <i>Example on <a href="http://ap2cu.com/tools/resizable-iframe/">http://ap2cu.com/tools/resizable-iframe/</a></i><br/>
+      <pre>
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt;
+            &lt;script&gt;
+              function resize(width, height) {
+                $('#crossdomainiframe').width(width).height(height);
+              }
+            &lt;/script&gt;
+          &lt;/head&gt;
+          &lt;body&gt;
+            &lt;iframe id="crossdomainiframe" scrolling="no" frameborder="1" src="http://camisetasretro.free.fr/tools/resizable-iframe/iframe.html"&gt;&lt;/iframe&gt;
+          &lt;/body&gt;
+        &lt;/html&gt;</pre>
+      <br/><br/>
+      <i>Create the file setSize.php with the following content:</i><br/>
+      <pre>
+        &lt;?php
+          $width = $_GET['width'];
+          $height = $_GET['height'];
+        ?&gt;
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;script&gt;
+              function execute() {
+                window.top.top.resize(&lt;?php echo $width;?&gt;,&lt;?php echo $height;?&gt;);
+              }
+            &lt;/script&gt;
+          &lt;/head&gt;
+          &lt;body onload="execute()"&gt;&lt;/body&gt;
+        &lt;/html&gt;</pre>
+    </p>
+    <p>
+      <b>Child Site</b><br/>
+      <i>Add the following on each child page:</i><br/>
+      <pre>
+        &lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
+        $(document).ready(function() {
+          var width = $('body').outerWidth(true);
+          var height = $('body').outerHeight(true);
+          $('&lt;iframe/&gt;').attr('src', 'http://ap2cu.com/tools/resizable-iframe/setSize.phpwidth='+width+'&height='+height).appendTo($('body')).width(0).height(0).hide();
+        });
+        &lt;/script&gt;</pre>
+    </p>
+  </body>
+</html>
