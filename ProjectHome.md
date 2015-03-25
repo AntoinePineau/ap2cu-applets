@@ -1,0 +1,1 @@
+Applet with algorithms to be used in HTML page with JavaScript
